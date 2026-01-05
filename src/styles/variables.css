@@ -1,0 +1,21 @@
+:root {
+  /* Colors */
+  --color-bg: #050a10;
+  --color-bg-secondary: #0b1220;
+  --color-primary: #00f2ff; /* Soft Neon Blue */
+  --color-primary-dim: rgba(0, 242, 255, 0.1);
+  --color-text-main: #ffffff;
+  --color-text-muted: #a0aab8;
+  --color-border: #1f2a3d;
+  
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 4rem;
+  --spacing-xl: 6rem;
+  
+  /* Typography */
+  --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+  --transition: all 0.3s ease;
+}

@@ -1,0 +1,49 @@
+@import './variables.css';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--color-bg);
+  color: var(--color-text-main);
+  line-height: 1.6;
+  overflow-x: hidden;
+  width: 100vw;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: var(--transition);
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Utility Classes */
+.container {
+  margin: 0 auto;
+  padding: 0 var(--spacing-sm);
+  width: 100vw;
+}
+
+.section-padding {
+  padding: var(--spacing-xl) 0;
+}
+
+.text-center { text-align: center; }
+.text-gradient {
+  background: linear-gradient(90deg, #fff, var(--color-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
