@@ -30,6 +30,7 @@
   max-width: 800px;
   margin: 0 auto;
   animation: fadeUp 1s ease-out;
+  overflow: visible;
 }
 
 .hero-badge {
@@ -52,6 +53,7 @@
   background: linear-gradient(180deg, #ffffff 0%, #b0b0b0 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  overflow: visible;
 }
 
 .hero-subtitle {
