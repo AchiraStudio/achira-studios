@@ -7,17 +7,15 @@ const Footer = () => {
     <footer className="footer">
       <div className="container footer-content">
         <div className="footer-brand">
-          <div className="logo">
-            <span className="logo-text">{siteConfig.brand.logo}</span>
-            <span className="logo-full">{siteConfig.brand.name}</span>
-          </div>
-          <p className="tagline">{siteConfig.brand.tagline}</p>
+          <h3 className="logo-text">{siteConfig.brand.name}</h3>
+          <p>{siteConfig.brand.tagline}</p>
+          <p className="secondary">{siteConfig.brand.secondaryTagline}</p>
         </div>
 
         <div className="footer-links">
           <h4>Navigation</h4>
           <ul>
-            {siteConfig.nav.map(item => (
+            {siteConfig.nav.map((item) => (
               <li key={item.label}><a href={item.href}>{item.label}</a></li>
             ))}
           </ul>
@@ -25,14 +23,13 @@ const Footer = () => {
 
         <div className="footer-contact">
           <h4>Contact</h4>
-          <p>{siteConfig.contact.email}</p>
           <p>WhatsApp: {siteConfig.contact.whatsapp}</p>
+          <p>Email: {siteConfig.contact.email}</p>
         </div>
       </div>
-      <div className="copyright">
-        <div className="container">
-          <p>&copy; {new Date().getFullYear()} {siteConfig.brand.name}. All rights reserved.</p>
-        </div>
+      
+      <div className="footer-bottom">
+        <p>{siteConfig.footer.copyright}</p>
       </div>
     </footer>
   );

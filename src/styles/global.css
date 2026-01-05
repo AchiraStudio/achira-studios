@@ -1,4 +1,4 @@
-@import './variables.css';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
 
 * {
   margin: 0;
@@ -6,13 +6,26 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: var(--font-main);
-  background-color: var(--color-bg);
-  color: var(--color-text-main);
+  background-color: var(--bg-dark);
+  color: var(--text-main);
   line-height: 1.6;
   overflow-x: hidden;
-  width: 100vw;
+}
+
+h1, h2, h3, h4 {
+  color: var(--text-main);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+p {
+  color: var(--text-muted);
 }
 
 a {
@@ -30,20 +43,27 @@ img {
   display: block;
 }
 
-/* Utility Classes */
+/* Utility */
 .container {
+  max-width: var(--container-width);
   margin: 0 auto;
-  padding: 0 var(--spacing-sm);
-  width: 100vw;
+  padding: 0 20px;
 }
 
-.section-padding {
-  padding: var(--spacing-xl) 0;
+.section-title {
+  text-align: center;
+  margin-bottom: 60px;
 }
 
-.text-center { text-align: center; }
-.text-gradient {
-  background: linear-gradient(90deg, #fff, var(--color-primary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.section-title h2 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.section-title h2 span {
+  color: var(--accent);
+}
+
+.section-title p {
+  font-size: 1.1rem;
 }

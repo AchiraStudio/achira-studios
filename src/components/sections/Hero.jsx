@@ -6,31 +6,23 @@ import './Hero.css';
 const Hero = () => {
   return (
     <section id="home" className="hero">
-      <div className="hero-bg-glow"></div>
       <div className="container hero-content">
         <div className="hero-text">
-          <h1 className="hero-headline">
-            <span className="text-gradient">{siteConfig.hero.headline}</span>
-          </h1>
-          <p className="hero-subheadline">{siteConfig.hero.subheadline}</p>
-          <div className="hero-cta">
-            <Button href="#pricing">{siteConfig.hero.cta1}</Button>
-            <Button variant="outline" href="#contact">{siteConfig.hero.cta2}</Button>
+          <h1>{siteConfig.hero.headline}</h1>
+          <p>{siteConfig.hero.subheadline}</p>
+          <div className="hero-buttons">
+            <Button href="#pricing" variant="primary">
+              {siteConfig.hero.ctaPrimary}
+            </Button>
+            <Button href="#contact" variant="secondary">
+              {siteConfig.hero.ctaSecondary}
+            </Button>
           </div>
         </div>
-        
-        {/* Optional Abstract Visual Representation */}
         <div className="hero-visual">
-          <div className="card-glow">
-            <div className="screen-content">
-              <div className="header-line"></div>
-              <div className="body-lines">
-                <div className="line"></div>
-                <div className="line"></div>
-                <div className="line short"></div>
-              </div>
-              <div className="btn-mock"></div>
-            </div>
+          <div className="circle-glow"></div>
+          <div className="card-visual">
+            <span className="logo-large">{siteConfig.brand.logo}</span>
           </div>
         </div>
       </div>

@@ -1,85 +1,90 @@
-.pricing {
-  background: var(--color-bg-secondary);
-}
-
 .pricing-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+  gap: 30px;
   align-items: start;
 }
 
 .pricing-card {
-  background: var(--color-bg);
-  padding: 3rem 2rem;
+  background: var(--bg-card);
+  padding: 40px;
   border-radius: 16px;
-  border: 1px solid var(--color-border);
+  border: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  flex-direction: column;
   position: relative;
-  transition: var(--transition);
 }
 
-.pricing-card.popular {
-  border-color: var(--color-primary);
-  box-shadow: 0 0 30px rgba(0, 242, 255, 0.1);
+.pricing-card.highlight {
+  background: linear-gradient(180deg, rgba(6, 182, 212, 0.05) 0%, var(--bg-card) 100%);
+  border: 1px solid var(--accent-glow);
   transform: scale(1.05);
   z-index: 2;
 }
 
-.badge-popular {
+.badge {
   position: absolute;
   top: -12px;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--color-primary);
-  color: #000;
+  background: var(--accent);
+  color: var(--bg-dark);
   padding: 4px 12px;
   border-radius: 20px;
   font-size: 0.8rem;
   font-weight: 700;
+  text-transform: uppercase;
 }
 
-.plan-name {
+.pricing-card h3 {
   font-size: 1.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 15px;
+  color: var(--text-main);
 }
 
-.plan-price {
+.price {
   font-size: 2rem;
-  font-weight: 800;
-  color: #fff;
-  margin-bottom: 0.5rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 10px;
 }
 
-.plan-desc {
-  color: var(--color-text-muted);
-  margin-bottom: 2rem;
-  font-size: 0.9rem;
+.price span {
+  color: var(--accent-highlight);
 }
 
-.plan-features {
-  margin-bottom: 2rem;
+.desc {
+  margin-bottom: 30px;
+  font-size: 0.95rem;
+  min-height: 45px;
 }
 
-.plan-features li {
+.features {
+  flex-grow: 1;
+  margin-bottom: 30px;
+}
+
+.features li {
   display: flex;
   align-items: center;
-  margin-bottom: 1rem;
-  color: var(--color-text-muted);
-  font-size: 0.95rem;
+  gap: 10px;
+  margin-bottom: 15px;
+  color: var(--text-muted);
 }
 
-.check-icon {
-  color: var(--color-primary);
-  margin-right: 10px;
-  font-weight: bold;
+.features svg {
+  width: 20px;
+  height: 20px;
+  color: var(--accent);
+  flex-shrink: 0;
 }
 
-.full-width {
+.pricing-btn {
   width: 100%;
 }
 
-@media (max-width: 768px) {
-  .pricing-card.popular {
+@media (max-width: 900px) {
+  .pricing-card.highlight {
     transform: scale(1);
   }
 }

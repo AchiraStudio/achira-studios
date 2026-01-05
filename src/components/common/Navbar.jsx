@@ -3,43 +3,61 @@ import { siteConfig } from '../../config/siteConfig';
 import './Navbar.css';
 
 const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 50);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
+    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="container navbar-content">
+        {/* Logo */}
         <a href="#" className="logo">
-          <span className="logo-text">{siteConfig.brand.logo}</span>
-          <span className="logo-full">{siteConfig.brand.name}</span>
+          <span className="logo-mark">{siteConfig.brand.logo}</span>
+          <span className="logo-text">{siteConfig.brand.name}</span>
         </a>
 
-        <div className={`nav-links ${mobileMenuOpen ? 'active' : ''}`}>
+        {/* Desktop Nav */}
+        <ul className="nav-links">
           {siteConfig.nav.map((item) => (
-            <a 
-              key={item.label} 
-              href={item.href} 
-              className="nav-link"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              {item.label}
-            </a>
+            <li key={item.label}>
+              <a href={item.href}>{item.label}</a>
+            </li>
           ))}
-        </div>
+        </ul>
 
-        <div className="hamburger" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
+        {/* Mobile Toggle */}
+        <button 
+          className="mobile-toggle" 
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label="Toggle menu"
+        >
+          <span className={isOpen ? "open" : ""}></span>
+          <span className={isOpen ? "open" : ""}></span>
+          <span className={isOpen ? "open" : ""}></span>
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      <div className={`mobile-menu ${isOpen ? 'active' : ''}`}>
+        <ul>
+          {siteConfig.nav.map((item) => (
+            <li key={item.label}>
+              <a 
+                href={item.href} 
+                onClick={() => setIsOpen(false)}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
     </nav>
   );
