@@ -1,28 +1,23 @@
+// src/components/sections/Hero/Hero.jsx
 import React from 'react';
-import { siteConfig } from '../../config/siteConfig';
 import Button from '../common/Button';
+import { siteConfig } from '../../config/siteConfig';
 import './Hero.css';
 
 const Hero = () => {
+  const { headline, subheadline, ctaPrimary, ctaSecondary } = siteConfig.hero;
+
   return (
     <section id="home" className="hero">
-      <div className="container hero-content">
-        <div className="hero-text">
-          <h1>{siteConfig.hero.headline}</h1>
-          <p>{siteConfig.hero.subheadline}</p>
-          <div className="hero-buttons">
-            <Button href="#pricing" variant="primary">
-              {siteConfig.hero.ctaPrimary}
-            </Button>
-            <Button href="#contact" variant="secondary">
-              {siteConfig.hero.ctaSecondary}
-            </Button>
-          </div>
-        </div>
-        <div className="hero-visual">
-          <div className="circle-glow"></div>
-          <div className="card-visual">
-            <span className="logo-large">{siteConfig.brand.logo}</span>
+      <div className="hero-bg-glow"></div>
+      <div className="container hero-container">
+        <div className="hero-content">
+          <div className="hero-badge">Welcome to {siteConfig.brand.name}</div>
+          <h1 className="hero-title">{headline}</h1>
+          <p className="hero-subtitle">{subheadline}</p>
+          <div className="hero-actions">
+            <Button href="#pricing">{ctaPrimary}</Button>
+            <Button variant="outline" href="#contact">{ctaSecondary}</Button>
           </div>
         </div>
       </div>

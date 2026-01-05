@@ -1,24 +1,28 @@
+/* src/styles/variables.css */
 :root {
   /* Colors */
-  --bg-dark: #050505;
-  --bg-card: #0f1014;
-  --bg-card-hover: #16181d;
+  --bg-dark: #0a0a0e;
+  --bg-card: #111118;
+  --bg-card-hover: #1a1a24;
   
-  --text-main: #ffffff;
-  --text-muted: #94a3b8;
+  --primary: #00d4ff; /* Cyan Neon */
+  --primary-glow: rgba(0, 212, 255, 0.4);
+  --secondary: #0077ff; /* Deep Blue */
   
-  /* Accent: Neon Cyan / Blue Glow */
-  --accent: #06b6d4;
-  --accent-glow: rgba(6, 182, 212, 0.4);
-  --accent-hover: #22d3ee;
-
+  --text-main: #f0f0f0;
+  --text-muted: #a0a0a0;
+  --text-dark: #0a0a0e;
+  
+  --border-color: #2a2a35;
+  
+  /* Spacing */
+  --container-padding: 2rem;
+  --max-width: 1200px;
+  
   /* Typography */
   --font-main: 'Inter', system-ui, -apple-system, sans-serif;
-
-  /* Spacing */
-  --container-width: 1200px;
-  --section-padding: 80px 20px;
-
+  
   /* Transitions */
-  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: 0.2s ease;
+  --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }

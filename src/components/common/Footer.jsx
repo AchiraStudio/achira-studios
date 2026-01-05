@@ -1,35 +1,38 @@
+// src/components/common/Footer/Footer.jsx
 import React from 'react';
 import { siteConfig } from '../../config/siteConfig';
+import { Instagram, Linkedin, Twitter } from 'lucide-react';
 import './Footer.css';
 
 const Footer = () => {
   return (
     <footer className="footer">
-      <div className="container footer-content">
+      <div className="container footer-container">
         <div className="footer-brand">
-          <h3 className="logo-text">{siteConfig.brand.name}</h3>
-          <p>{siteConfig.brand.tagline}</p>
-          <p className="secondary">{siteConfig.brand.secondaryTagline}</p>
+          <h2>{siteConfig.brand.name}</h2>
+          <p>{siteConfig.brand.subTagline}</p>
         </div>
-
+        
         <div className="footer-links">
-          <h4>Navigation</h4>
+          <h3>Links</h3>
           <ul>
-            {siteConfig.nav.map((item) => (
-              <li key={item.label}><a href={item.href}>{item.label}</a></li>
+            {siteConfig.navigation.map((nav, idx) => (
+              <li key={idx}><a href={nav.href}>{nav.name}</a></li>
             ))}
           </ul>
         </div>
 
-        <div className="footer-contact">
-          <h4>Contact</h4>
-          <p>WhatsApp: {siteConfig.contact.whatsapp}</p>
-          <p>Email: {siteConfig.contact.email}</p>
+        <div className="footer-social">
+          <h3>Connect</h3>
+          <div className="social-icons">
+            <a href="#" aria-label="Instagram"><Instagram size={20} /></a>
+            <a href="#" aria-label="LinkedIn"><Linkedin size={20} /></a>
+            <a href="#" aria-label="Twitter"><Twitter size={20} /></a>
+          </div>
         </div>
       </div>
-      
       <div className="footer-bottom">
-        <p>{siteConfig.footer.copyright}</p>
+        <p>&copy; {new Date().getFullYear()} {siteConfig.brand.name}. All rights reserved.</p>
       </div>
     </footer>
   );

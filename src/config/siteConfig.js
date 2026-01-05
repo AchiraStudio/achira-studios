@@ -1,119 +1,99 @@
+// src/config/siteConfig.js
+import { Monitor, Smartphone, PenTool, Layout, Server, Zap, CheckCircle, Infinity, MessageSquare, Mail } from 'lucide-react';
+
 export const siteConfig = {
   brand: {
     name: "AchiraStudios",
-    logo: "AS",
+    initials: "AS",
     tagline: "Modern Websites. Affordable Solutions.",
-    secondaryTagline: "Solusi Website Modern untuk Bisnis Lokal.",
+    subTagline: "Solusi Website Modern untuk Bisnis Lokal.",
   },
-  nav: [
-    { label: "Home", href: "#home" },
-    { label: "Services", href: "#services" },
-    { label: "Portfolio", href: "#portfolio" },
-    { label: "Pricing", href: "#pricing" },
-    { label: "Contact", href: "#contact" },
+  navigation: [
+    { name: "Home", href: "#home" },
+    { name: "Services", href: "#services" },
+    { name: "Why Us", href: "#why-us" },
+    { name: "Portfolio", href: "#portfolio" },
+    { name: "Pricing", href: "#pricing" },
+    { name: "Contact", href: "#contact" },
   ],
   hero: {
     headline: "Website Modern & Terjangkau untuk Bisnis Anda",
-    subheadline:
-      "AchiraStudios membantu UMKM dan bisnis lokal tampil profesional di dunia digital.",
+    subheadline: "AchiraStudios membantu UMKM dan bisnis lokal tampil profesional di dunia digital dengan desain futuristik dan performa tinggi.",
     ctaPrimary: "Lihat Paket",
     ctaSecondary: "Hubungi Kami",
   },
   services: [
     {
-      title: "Company Profile",
-      desc: "Tampilkan kredibilitas bisnis Anda dengan desain elegan.",
-      icon: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4", // Building icon path
-    },
-    {
-      title: "Cafe / Restaurant",
-      desc: "Menu digital, reservasi, dan galeri foto yang menggugah selera.",
-      icon: "M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253", // Book/Menu icon path
-    },
-    {
-      title: "Landing Page",
-      desc: "Halaman konversi tinggi untuk penawaran produk spesifik.",
-      icon: "M13 10V3L4 14h7v7l9-11h-7z", // Lightning icon path
-    },
-    {
-      title: "Website Redesign",
-      desc: "Perbarui tampilan lama Anda menjadi sesuai standar modern.",
-      icon: "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15", // Refresh icon path
-    },
-  ],
-  whyUs: [
-    "Harga terjangkau",
-    "Desain modern",
-    "Mobile-friendly",
-    "Cepat & efisien",
-    "Revisi tanpa batas",
-    "Support setelah website jadi",
-  ],
-  portfolio: [
-    {
       id: 1,
-      title: "Kopi Senja",
-      category: "Cafe & Resto",
-      image: "https://picsum.photos/seed/cafe1/600/400",
+      title: "Company Profile",
+      description: "Tampilkan profesionalitas bisnis Anda ke seluruh dunia.",
+      icon: Monitor,
     },
     {
       id: 2,
-      title: "BajuKita Store",
-      category: "E-Commerce",
-      image: "https://picsum.photos/seed/store1/600/400",
+      title: "F&B / Cafe Website",
+      description: "Desain menggugah selera dengan integrasi menu digital.",
+      icon: Smartphone,
     },
     {
       id: 3,
-      title: "Corporate CV",
-      category: "Company Profile",
-      image: "https://picsum.photos/seed/office1/600/400",
+      title: "Landing Page",
+      description: "Halaman khusus untuk konversi penjualan produk Anda.",
+      icon: Layout,
     },
+    {
+      id: 4,
+      title: "Website Redesign",
+      description: "Perbarui tampilan website lama menjadi lebih modern.",
+      icon: PenTool,
+    },
+    {
+      id: 5,
+      title: "Maintenance",
+      description: "Dukungan teknis dan update konten berkala.",
+      icon: Server,
+    },
+  ],
+  whyChoose: [
+    { id: 1, title: "Harga Terjangkau", desc: "Solusi hemat tanpa mengorbankan kualitas.", icon: CheckCircle },
+    { id: 2, title: "Desain Modern", desc: "Tampilan estetis dan relevan dengan tren terkini.", icon: Monitor },
+    { id: 3, title: "Mobile Friendly", desc: "Akses sempurna dari HP, Tablet, dan Desktop.", icon: Smartphone },
+    { id: 4, title: "Cepat & Efisien", desc: "Pengerjaan tepat waktu sesuai target bisnis Anda.", icon: Zap },
+    { id: 5, title: "Revisi Tanpa Batas", desc: "Kami pastikan Anda puas 100% dengan hasilnya.", icon: Infinity },
+    { id: 6, title: "After Sales Support", desc: "Bantuan teknis setelah website online.", icon: MessageSquare },
+  ],
+  portfolio: [
+    { id: 1, title: "Kopi Senja", category: "Cafe & Resto", image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=80" },
+    { id: 2, title: "TechVision Corp", category: "Company Profile", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" },
+    { id: 3, title: "Glow Skincare", category: "Landing Page", image: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=800&q=80" },
+    { id: 4, title: "Urban Living", category: "Real Estate", image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80" },
   ],
   pricing: [
     {
-      name: "Basic Package",
-      price: 250000,
-      desc: "Untuk UMKM & Personal",
-      features: [
-        "Hingga 5 Halaman",
-        "Desain Responsive Modern",
-        "Revisi Tanpa Batas",
-        "Gratis Domain .my.id (1th)",
-      ],
+      id: "basic",
+      name: "Basic",
+      price: "Rp 250.000",
+      features: ["Up to 5 Pages", "Responsive Mobile/Desktop", "NO Revision Limit", "Standard Design", "1 Month Support"],
+      isPopular: false,
     },
     {
-      name: "Standard Package",
-      priceRange: "Rp 750.000 - Rp 1.500.000",
-      desc: "Untuk Bisnis Berkembang",
-      features: [
-        "Halaman Unlimited",
-        "UI Konsisten & Modern",
-        "Integrasi WhatsApp",
-        "Form Kontak",
-        "Revisi Tanpa Batas",
-      ],
-      highlight: true,
+      id: "standard",
+      name: "Standard",
+      price: "Rp 750k - 1.5jt",
+      features: ["Unlimited Pages", "Custom Contact Form", "WhatsApp Integration", "NO Revision Limit", "SEO Basic Setup", "3 Months Support"],
+      isPopular: true,
     },
     {
-      name: "Premium Package",
-      price: 2000000,
-      desc: "Custom & Prioritas",
-      features: [
-        "Fully Custom Design",
-        "Halaman Unlimited",
-        "Fitur Advanced",
-        "Priority Support",
-        "Revisi Tanpa Batas",
-        "Optimasi SEO Dasar",
-      ],
+      id: "premium",
+      name: "Premium",
+      price: "Rp 2.000.000+",
+      features: ["Unlimited Pages", "Fully Custom Design", "Advanced Animations", "Priority Support", "NO Revision Limit", "CMS Integration"],
+      isPopular: false,
     },
   ],
   contact: {
-    whatsapp: "6281234567890",
-    email: "halo@achirastudios.com",
+    email: "hello@achirastudios.com",
+    whatsapp: "+62 878 9702 5720",
     address: "Bogor, Indonesia",
-  },
-  footer: {
-    copyright: "© 2025 AchiraStudios. All rights reserved.",
   },
 };

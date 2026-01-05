@@ -1,34 +1,40 @@
+/* src/components/common/Button/Button.css */
 .btn {
   display: inline-block;
   padding: 0.8rem 2rem;
-  border-radius: 4px;
-  font-weight: 600;
   font-size: 1rem;
+  font-weight: 600;
+  border-radius: 50px;
   cursor: pointer;
-  transition: var(--transition);
-  border: 1px solid transparent;
+  transition: var(--transition-fast);
   text-align: center;
+  border: none;
 }
 
 .btn-primary {
-  background: var(--color-primary);
-  color: #000;
-  box-shadow: 0 0 15px rgba(0, 242, 255, 0.3);
+  background: var(--primary);
+  color: var(--bg-dark);
+  box-shadow: 0 0 15px var(--primary-glow);
 }
 
 .btn-primary:hover {
   background: #fff;
-  box-shadow: 0 0 25px rgba(0, 242, 255, 0.5);
   transform: translateY(-2px);
+  box-shadow: 0 0 25px var(--primary-glow);
 }
 
 .btn-outline {
   background: transparent;
-  border-color: var(--color-primary);
-  color: var(--color-primary);
+  border: 1px solid var(--primary);
+  color: var(--primary);
 }
 
 .btn-outline:hover {
-  background: var(--color-primary-dim);
+  background: rgba(0, 212, 255, 0.1);
   color: #fff;
+  border-color: #fff;
+}
+
+.btn-full {
+  width: 100%;
 }

@@ -1,33 +1,34 @@
+/* src/components/sections/Pricing/Pricing.css */
 .pricing-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-  align-items: start;
+  gap: 2rem;
+  align-items: center; /* Vertically align for emphasis */
 }
 
 .pricing-card {
   background: var(--bg-card);
-  padding: 40px;
+  border: 1px solid var(--border-color);
   border-radius: 16px;
-  border: 1px solid rgba(255,255,255,0.05);
-  display: flex;
-  flex-direction: column;
+  padding: 2.5rem;
   position: relative;
+  transition: var(--transition-smooth);
 }
 
-.pricing-card.highlight {
-  background: linear-gradient(180deg, rgba(6, 182, 212, 0.05) 0%, var(--bg-card) 100%);
-  border: 1px solid var(--accent-glow);
+.pricing-card.popular {
+  background: linear-gradient(145deg, #16161f 0%, #111118 100%);
+  border: 1px solid var(--primary);
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.1);
   transform: scale(1.05);
   z-index: 2;
 }
 
-.badge {
+.popular-badge {
   position: absolute;
   top: -12px;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--accent);
+  background: var(--primary);
   color: var(--bg-dark);
   padding: 4px 12px;
   border-radius: 20px;
@@ -36,55 +37,44 @@
   text-transform: uppercase;
 }
 
-.pricing-card h3 {
-  font-size: 1.5rem;
-  margin-bottom: 15px;
-  color: var(--text-main);
+.pricing-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.pricing-header h3 {
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
 }
 
 .price {
-  font-size: 2rem;
+  font-size: 1.75rem;
   font-weight: 700;
-  color: var(--text-main);
-  margin-bottom: 10px;
+  color: #fff;
 }
 
-.price span {
-  color: var(--accent-highlight);
+.pricing-features {
+  margin-bottom: 2.5rem;
 }
 
-.desc {
-  margin-bottom: 30px;
-  font-size: 0.95rem;
-  min-height: 45px;
-}
-
-.features {
-  flex-grow: 1;
-  margin-bottom: 30px;
-}
-
-.features li {
+.pricing-features li {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 15px;
-  color: var(--text-muted);
+  margin-bottom: 1rem;
+  color: var(--text-main);
+  font-size: 0.95rem;
 }
 
-.features svg {
-  width: 20px;
-  height: 20px;
-  color: var(--accent);
+.check-icon {
+  color: var(--primary);
   flex-shrink: 0;
 }
 
-.pricing-btn {
-  width: 100%;
-}
-
 @media (max-width: 900px) {
-  .pricing-card.highlight {
+  .pricing-card.popular {
     transform: scale(1);
+    margin: 1rem 0;
   }
 }

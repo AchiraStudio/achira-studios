@@ -1,78 +1,52 @@
-import React, { useState } from 'react';
-import { siteConfig } from '../../config/siteConfig';
+// src/components/sections/Contact/Contact.jsx
+import React from 'react';
 import Button from '../common/Button';
+import { siteConfig } from '../../config/siteConfig';
+import { Mail, MessageCircle } from 'lucide-react';
 import './Contact.css';
 
 const Contact = () => {
-  const [formStatus, setFormStatus] = useState('idle'); // idle, submitting, success
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setFormStatus('submitting');
-    
-    // Simulate API call
-    setTimeout(() => {
-      setFormStatus('success');
-      setTimeout(() => setFormStatus('idle'), 3000);
-    }, 1500);
-  };
-
   return (
-    <section id="contact" className="section">
+    <section id="contact" className="contact section-padding">
       <div className="container contact-container">
         <div className="contact-info">
-          <div className="section-title" style={{textAlign: 'left', marginBottom: '40px'}}>
-            <h2>Mulai <span>Proyek</span> Anda</h2>
-            <p>Siap membuat bisnis Anda tampil beda? Hubungi kami sekarang.</p>
-          </div>
+          <h2 className="section-title" style={{textAlign: 'left'}}>Siap Memulai?</h2>
+          <p className="contact-desc">
+            Konsultasikan kebutuhan website bisnis Anda bersama AchiraStudios sekarang.
+          </p>
           
-          <div className="info-item">
-            <h4>WhatsApp</h4>
-            <p>{siteConfig.contact.whatsapp}</p>
+          <div className="contact-methods">
+            <a href={`https://wa.me/${siteConfig.contact.whatsapp.replace(/\D/g,'')}`} className="method-item">
+              <div className="icon-box"><MessageCircle /></div>
+              <div>
+                <h4>WhatsApp</h4>
+                <p>{siteConfig.contact.whatsapp}</p>
+              </div>
+            </a>
+            
+            <a href={`mailto:${siteConfig.contact.email}`} className="method-item">
+              <div className="icon-box"><Mail /></div>
+              <div>
+                <h4>Email</h4>
+                <p>{siteConfig.contact.email}</p>
+              </div>
+            </a>
           </div>
-          <div className="info-item">
-            <h4>Email</h4>
-            <p>{siteConfig.contact.email}</p>
-          </div>
-          <div className="info-item">
-            <h4>Lokasi</h4>
-            <p>{siteConfig.contact.address}</p>
-          </div>
-
-          <a 
-            href={`https://wa.me/${siteConfig.contact.whatsapp}`} 
-            className="wa-direct"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Button variant="glow">Chat via WhatsApp</Button>
-          </a>
         </div>
 
-        <div className="contact-form-wrapper">
-          <form className="contact-form" onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label>Nama Lengkap</label>
-              <input type="text" required placeholder="Nama Anda" />
-            </div>
-            <div className="form-group">
-              <label>Email</label>
-              <input type="email" required placeholder="email@contoh.com" />
-            </div>
-            <div className="form-group">
-              <label>Pesan / Kebutuhan</label>
-              <textarea rows="4" required placeholder="Ceritakan tentang proyek Anda..."></textarea>
-            </div>
-            
-            <Button type="submit" variant="primary" disabled={formStatus === 'submitting'}>
-              {formStatus === 'submitting' ? 'Mengirim...' : 'Kirim Pesan'}
-            </Button>
-            
-            {formStatus === 'success' && (
-              <p className="success-msg">Pesan berhasil dikirim! Kami akan segera menghubungi Anda.</p>
-            )}
-          </form>
-        </div>
+        <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
+          <h3>Kirim Pesan</h3>
+          <div className="form-group">
+            <input type="text" placeholder="Nama Anda" required />
+          </div>
+          <div className="form-group">
+            <input type="email" placeholder="Email Address" required />
+          </div>
+          <div className="form-group">
+            <textarea placeholder="Ceritakan kebutuhan website Anda..." rows="4" required></textarea>
+          </div>
+          <Button type="submit" className="btn-full">Kirim Pesan</Button>
+        </form>
       </div>
     </section>
   );
