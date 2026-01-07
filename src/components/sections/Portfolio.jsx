@@ -1,34 +1,73 @@
 // src/components/sections/Portfolio/Portfolio.jsx
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { siteConfig } from '../../config/siteConfig';
 import './Portfolio.css';
 
+const DESKTOP_WIDTH = 1440; 
+
 const PortfolioItem = ({ item }) => {
   const [isLoading, setIsLoading] = useState(true);
+  const [scale, setScale] = useState(1);
+  const wrapperRef = useRef(null);
   
-  // Fallback url if not in config
   const projectUrl = item.url || '#';
+
+  useEffect(() => {
+    const element = wrapperRef.current;
+    if (!element) return;
+
+    const observer = new ResizeObserver((entries) => {
+      for (let entry of entries) {
+        const containerWidth = entry.contentRect.width;
+        if (containerWidth > 0) {
+          setScale(containerWidth / DESKTOP_WIDTH);
+        }
+      }
+    });
+
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <article className="portfolio-card">
-      {/* LEFT: Seamless Iframe Container */}
-      <div className="card-media">
+      {/* TOP/LEFT: Seamless Iframe Media */}
+      <div className="card-media" ref={wrapperRef}>
+        
         {isLoading && (
           <div className="loader-overlay">
             <div className="spinner"></div>
           </div>
         )}
+        
         <iframe 
           src={projectUrl} 
           title={item.title}
           loading="lazy"
           onLoad={() => setIsLoading(false)}
           allowFullScreen
-          className="seamless-iframe"
+          // --- THE FIX STARTS HERE ---
+          tabIndex="-1" 
+          sandbox="allow-scripts allow-same-origin allow-forms allow-presentation"
+          // ---------------------------
+          className={`seamless-iframe ${isLoading ? 'hidden' : 'visible'}`}
+          style={{
+            width: `${DESKTOP_WIDTH}px`,
+            height: `${100 / scale}%`,
+            transform: `scale(${scale})`,
+          }}
         ></iframe>
+
+        <a 
+          href={projectUrl} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="click-overlay"
+          aria-label={`Open ${item.title}`}
+        ></a>
       </div>
 
-      {/* RIGHT: Minimalist Details */}
+      {/* BOTTOM/RIGHT: Details */}
       <div className="card-details">
         <div className="details-inner">
           <span className="detail-category">{item.category}</span>
