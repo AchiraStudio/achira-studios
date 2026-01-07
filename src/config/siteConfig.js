@@ -63,10 +63,30 @@ export const siteConfig = {
     { id: 6, title: "After Sales Support", desc: "Bantuan teknis setelah website online.", icon: MessageSquare },
   ],
   portfolio: [
-    { id: 1, title: "Kopi Senja", category: "Cafe & Resto", image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=80" },
-    { id: 2, title: "TechVision Corp", category: "Company Profile", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" },
-    { id: 3, title: "Glow Skincare", category: "Landing Page", image: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=800&q=80" },
-    { id: 4, title: "Urban Living", category: "Real Estate", image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80" },
+    { 
+      id: 1, 
+      title: "Recis Ascension", 
+      category: "Events", 
+      url: "https://recisascension.com/ascension-cup"
+    },
+    { 
+      id: 2, 
+      title: "Recis-SHS", 
+      category: "Profile", 
+      url: "https://recisascension.com/r-shs", 
+    },
+    { 
+      id: 3, 
+      title: "Kotakan Cafe", 
+      category: "F&B", 
+      url: "https://food-shop-template.pages.dev/", 
+    },
+    { 
+      id: 4, 
+      title: "Recis Revival", 
+      category: "Events", 
+      url: "https://recisrevival.pages.dev/", 
+    },
   ],
   pricing: [
     {

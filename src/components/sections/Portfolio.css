@@ -1,57 +1,184 @@
 /* src/components/sections/Portfolio/Portfolio.css */
-.portfolio-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.5rem;
-}
 
-.portfolio-card {
-  position: relative;
-  border-radius: 12px;
-  overflow: hidden;
-  aspect-ratio: 16/10;
-  cursor: pointer;
-  background: var(--bg-card);
-}
-
-.portfolio-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.portfolio-card:hover img {
-  transform: scale(1.05);
-}
-
-.portfolio-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+/* Layout & Spacing */
+.portfolio-list {
   display: flex;
-  align-items: flex-end;
-  padding: 1.5rem;
-  opacity: 0;
-  transition: var(--transition-fast);
+  flex-direction: column;
+  gap: 5rem;
+  margin-top: 4rem;
 }
 
-.portfolio-card:hover .portfolio-overlay {
-  opacity: 1;
+.section-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-.portfolio-cat {
-  color: var(--primary);
+/* --- The Seamless Card --- */
+.portfolio-card {
+  display: flex;
+  background: var(--bg-card, #ffffff);
+  border-radius: 24px; /* Large smooth corners */
+  overflow: hidden; /* Clips the iframe corners */
+  height: 550px; /* Tall enough for desktop view */
+  box-shadow: 
+    0 2px 4px rgba(0,0,0,0.02),
+    0 10px 30px rgba(0,0,0,0.05),
+    0 30px 60px rgba(0,0,0,0.04);
+  border: 1px solid rgba(0,0,0,0.04);
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+              box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.portfolio-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 
+    0 4px 8px rgba(0,0,0,0.03),
+    0 20px 40px rgba(0,0,0,0.08),
+    0 40px 80px rgba(0,0,0,0.06);
+}
+
+/* --- Left: The Iframe Media --- */
+.card-media {
+  flex: 1.8; /* Takes up ~65% of width */
+  position: relative;
+  background: #f4f5f7; /* Subtle placeholder bg */
+  border-right: 1px solid rgba(0,0,0,0.03);
+}
+
+.seamless-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+  /* Ensure the iframe interacts smoothly */
+  pointer-events: all; 
+}
+
+/* Loading State */
+.loader-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--bg-card, #ffffff);
+  z-index: 10;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(0,0,0,0.05);
+  border-left-color: var(--primary, #333);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* --- Right: The Details --- */
+.card-details {
+  flex: 1; /* Takes up ~35% of width */
+  padding: 3.5rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.details-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.detail-category {
   font-size: 0.8rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
+  color: var(--primary, #007bff);
+  opacity: 0.9;
 }
 
-.portfolio-info h3 {
-  color: #fff;
-  font-size: 1.25rem;
-  margin-top: 0.25rem;
+.detail-title {
+  font-size: 2.25rem;
+  line-height: 1.1;
+  font-weight: 800;
+  color: var(--text-main, #111);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+/* Link Button Design */
+.action-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 0 0 4px 0;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text-main, #111);
+  text-decoration: none;
+  border-bottom: 2px solid rgba(0,0,0,0.1);
+  transition: all 0.2s ease;
+}
+
+.action-link svg {
+  transition: transform 0.2s ease;
+}
+
+.action-link:hover {
+  color: var(--primary, #007bff);
+  border-bottom-color: var(--primary, #007bff);
+}
+
+.action-link:hover svg {
+  transform: translate(2px, -2px);
+}
+
+/* --- Responsive Design --- */
+
+/* Tablet (Portrait) */
+@media (max-width: 1024px) {
+  .portfolio-card {
+    height: 450px;
+  }
+  .card-details {
+    padding: 2rem;
+  }
+  .detail-title {
+    font-size: 1.75rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .portfolio-list {
+    gap: 3rem;
+  }
+
+  .portfolio-card {
+    flex-direction: column;
+    height: auto;
+    border-radius: 16px;
+  }
+
+  .card-media {
+    height: 400px; /* Fixed height for iframe on mobile */
+    border-right: none;
+    border-bottom: 1px solid rgba(0,0,0,0.03);
+  }
+
+  .card-details {
+    padding: 2rem;
+  }
+
+  .detail-title {
+    font-size: 1.5rem;
+  }
 }
