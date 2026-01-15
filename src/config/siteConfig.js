@@ -99,7 +99,7 @@ export const siteConfig = {
     {
       id: "standard",
       name: "Standard",
-      price: "Rp 750k - 1.5jt",
+      price: "Rp 750.000+",
       features: ["Unlimited Pages", "Custom Contact Form", "WhatsApp Integration", "NO Revision Limit", "SEO Basic Setup", "3 Months Support"],
       isPopular: true,
     },

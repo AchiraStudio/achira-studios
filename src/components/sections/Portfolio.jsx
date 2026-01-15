@@ -1,109 +1,148 @@
-// src/components/sections/Portfolio/Portfolio.jsx
 import React, { useState, useRef, useEffect } from 'react';
+import { motion, useSpring, useTransform, useMotionValue } from 'framer-motion';
+import { ExternalLink, Layers } from 'lucide-react';
 import { siteConfig } from '../../config/siteConfig';
 import './Portfolio.css';
 
-const DESKTOP_WIDTH = 1440; 
+const DESKTOP_WIDTH = 1440;
 
-const PortfolioItem = ({ item }) => {
+const PortfolioItem = ({ item, index }) => {
   const [isLoading, setIsLoading] = useState(true);
+  const [shouldLoad, setShouldLoad] = useState(false); // State baru untuk kontrol loading
   const [scale, setScale] = useState(1);
   const wrapperRef = useRef(null);
+  const containerRef = useRef(null); // Ref untuk observer
   
-  const projectUrl = item.url || '#';
+  // 3D Tilt Logic
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const mouseX = useSpring(x, { stiffness: 100, damping: 30 });
+  const mouseY = useSpring(y, { stiffness: 100, damping: 30 });
+  const rotateX = useTransform(mouseY, [-300, 300], [5, -5]);
+  const rotateY = useTransform(mouseX, [-300, 300], [-5, 5]);
 
+  // FIX: Intersection Observer untuk mencegah auto-focus/auto-scroll
   useEffect(() => {
-    const element = wrapperRef.current;
-    if (!element) return;
-
-    const observer = new ResizeObserver((entries) => {
-      for (let entry of entries) {
-        const containerWidth = entry.contentRect.width;
-        if (containerWidth > 0) {
-          setScale(containerWidth / DESKTOP_WIDTH);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoad(true); // Mulai muat iframe hanya saat kartu terlihat 10%
+          observer.disconnect(); // Berhenti mengamati setelah dimuat
         }
-      }
-    });
+      },
+      { threshold: 0.1 } 
+    );
 
-    observer.observe(element);
+    if (containerRef.current) observer.observe(containerRef.current);
     return () => observer.disconnect();
   }, []);
 
+  // Scaling Logic
+  useEffect(() => {
+    const observer = new ResizeObserver((entries) => {
+      for (let entry of entries) {
+        const containerWidth = entry.contentRect.width;
+        if (containerWidth > 0) setScale(containerWidth / DESKTOP_WIDTH);
+      }
+    });
+    if (wrapperRef.current) observer.observe(wrapperRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    x.set(e.clientX - rect.left - rect.width / 2);
+    y.set(e.clientY - rect.top - rect.height / 2);
+  };
+
   return (
-    <article className="portfolio-card">
-      {/* TOP/LEFT: Seamless Iframe Media */}
-      <div className="card-media" ref={wrapperRef}>
-        
+    <motion.article 
+      ref={containerRef} // Pasang ref di sini
+      className="portfolio-card-v2"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.8, delay: index * 0.1 }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={() => { x.set(0); y.set(0); }}
+      style={{ rotateX, rotateY, perspective: 1000 }}
+    >
+      <div className="card-glass-glow"></div>
+      
+      <div className="card-media-v2" ref={wrapperRef}>
         {isLoading && (
-          <div className="loader-overlay">
-            <div className="spinner"></div>
+          <div className="card-loader">
+            <div className="shimmer"></div>
           </div>
         )}
         
-        <iframe 
-          src={projectUrl} 
-          title={item.title}
-          loading="lazy"
-          onLoad={() => setIsLoading(false)}
-          allowFullScreen
-          // --- THE FIX STARTS HERE ---
-          tabIndex="-1" 
-          sandbox="allow-scripts allow-same-origin allow-forms allow-presentation"
-          // ---------------------------
-          className={`seamless-iframe ${isLoading ? 'hidden' : 'visible'}`}
-          style={{
-            width: `${DESKTOP_WIDTH}px`,
-            height: `${100 / scale}%`,
-            transform: `scale(${scale})`,
-          }}
-        ></iframe>
-
-        <a 
-          href={projectUrl} 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          className="click-overlay"
-          aria-label={`Open ${item.title}`}
-        ></a>
+        {/* Render iframe hanya jika shouldLoad bernilai true */}
+        {shouldLoad ? (
+          <iframe 
+            src={item.url} 
+            title={item.title}
+            loading="lazy"
+            onLoad={() => setIsLoading(false)}
+            tabIndex="-1" 
+            /* Tambahkan sandbox tanpa allow-modals/allow-popups untuk keamanan ekstra */
+            sandbox="allow-scripts allow-same-origin allow-forms"
+            className={`portfolio-iframe ${isLoading ? 'hidden' : 'visible'}`}
+            style={{
+              width: `${DESKTOP_WIDTH}px`,
+              height: `${100 / scale}%`,
+              transform: `scale(${scale})`,
+            }}
+          ></iframe>
+        ) : (
+          <div className="iframe-placeholder"></div>
+        )}
+        
+        <div className="iframe-guard"></div>
       </div>
 
-      {/* BOTTOM/RIGHT: Details */}
-      <div className="card-details">
-        <div className="details-inner">
-          <span className="detail-category">{item.category}</span>
-          <h3 className="detail-title">{item.title}</h3>
-          
-          <div className="detail-actions">
-            <a 
-              href={projectUrl} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="action-link"
-            >
-              <span>Open Live Site</span>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </a>
-          </div>
+      <div className="card-info-v2">
+        <div className="info-header">
+          <span className="info-cat"><Layers size={12} /> {item.category}</span>
+          <h3 className="info-title">
+            {item.title.split(' ')[0]} <span className="outline-text">{item.title.split(' ')[1] || ''}</span>
+          </h3>
         </div>
+
+        <motion.a 
+          href={item.url} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="info-btn"
+          whileHover={{ x: 5 }}
+        >
+          <span>Live Preview</span>
+          <ExternalLink size={16} />
+        </motion.a>
       </div>
-    </article>
+    </motion.article>
   );
 };
 
 const Portfolio = () => {
   return (
-    <section id="portfolio" className="portfolio section-padding">
+    <section id="portfolio" className="portfolio-v2">
+      <div className="bg-grid-fade"></div>
+      
       <div className="container">
-        <div className="section-header">
-          <h2 className="section-title">Selected Works</h2>
-          <p className="section-subtitle">Explore my latest web projects.</p>
-        </div>
+        <header className="portfolio-header">
+          <motion.h2 
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            className="portfolio-h2"
+          >
+            SELECTED <span className="outline-text">WORKS</span>
+          </motion.h2>
+          <p className="portfolio-p">Interfacing the future of the web.</p>
+        </header>
         
-        <div className="portfolio-list">
-          {siteConfig.portfolio.map((item) => (
-            <PortfolioItem key={item.id} item={item} />
+        <div className="portfolio-grid-v2">
+          {siteConfig.portfolio.map((item, idx) => (
+            <PortfolioItem key={item.id} item={item} index={idx} />
           ))}
         </div>
       </div>

@@ -1,45 +1,184 @@
-/* src/components/sections/Services/Services.css */
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-}
-
-.service-card {
-  background: var(--bg-card);
-  padding: 2rem;
-  border-radius: 12px;
-  border: 1px solid var(--border-color);
-  transition: var(--transition-smooth);
+.services-v2 {
+  background: #050505;
+  padding: 120px 0;
   position: relative;
   overflow: hidden;
 }
 
-.service-card:hover {
-  background: var(--bg-card-hover);
-  border-color: var(--primary);
-  transform: translateY(-5px);
+/* --- Tech Grid Background --- */
+.services-grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0);
+  background-size: 40px 40px;
+  mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
 }
 
-.service-icon {
+.services-header-v2 {
+  margin-bottom: 80px;
+}
+
+.header-label {
+  color: #00d4ff;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.services-h2 {
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 900;
+  margin: 0;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+
+/* --- The Interactive Card --- */
+.services-grid-v2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 20px;
+}
+
+.service-card-v2 {
+  position: relative;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+  padding: 40px;
+  height: 100%;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.service-card-v2:hover {
+  border-color: rgba(0, 212, 255, 0.4);
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* --- Power Glow Effect --- */
+.card-power-glow {
+  position: absolute;
+  top: -50%; left: -50%; width: 200%; height: 200%;
+  background: radial-gradient(circle at center, rgba(0, 212, 255, 0.08) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.service-card-v2:hover .card-power-glow {
+  opacity: 1;
+}
+
+/* --- Scanline Animation --- */
+.card-scanline {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: linear-gradient(to bottom, transparent, rgba(0, 212, 255, 0.05), transparent);
+  pointer-events: none;
+}
+
+.service-card-v2:hover .card-scanline {
+  animation: scan 2s linear infinite;
+}
+
+@keyframes scan {
+  from { top: -100%; }
+  to { top: 100%; }
+}
+
+/* --- Icon & Text --- */
+.icon-wrapper-v2 {
+  position: relative;
   width: 60px;
   height: 60px;
-  background: rgba(0, 212, 255, 0.05);
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  color: var(--primary);
-  margin-bottom: 1.5rem;
+  color: #00d4ff;
+  margin-bottom: 40px;
 }
 
-.service-card h3 {
-  font-size: 1.25rem;
-  margin-bottom: 0.5rem;
+.icon-platform {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: #00d4ff;
+  box-shadow: 0 0 15px #00d4ff;
+  transform: scaleX(0.5);
+  opacity: 0.5;
+}
+
+.service-index {
+  display: block;
+  font-family: monospace;
+  font-size: 0.8rem;
+  color: #444;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+
+.service-title-v2 {
+  font-size: 1.75rem;
+  font-weight: 800;
   color: #fff;
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
 }
 
-.service-card p {
-  color: var(--text-muted);
-  font-size: 0.95rem;
+.service-description-v2 {
+  color: #888;
+  line-height: 1.7;
+  font-size: 1rem;
+  margin-bottom: 40px;
+}
+
+/* --- Card Details --- */
+.service-footer-v2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.status-indicator {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #444;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  background: #00ffaa;
+  border-radius: 50%;
+}
+
+.corner-accent {
+  width: 12px;
+  height: 12px;
+  border-right: 2px solid #333;
+  border-bottom: 2px solid #333;
+}
+
+.service-card-v2:hover .corner-accent {
+  border-color: #00d4ff;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .services-v2 { padding: 80px 20px; }
+  .services-h2 { font-size: 3rem; }
+  .service-card-v2 { padding: 30px; }
 }

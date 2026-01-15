@@ -1,80 +1,152 @@
-/* src/components/sections/Pricing/Pricing.css */
-.pricing-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  align-items: center; /* Vertically align for emphasis */
-}
-
-.pricing-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: 16px;
-  padding: 2.5rem;
-  position: relative;
-  transition: var(--transition-smooth);
-}
-
-.pricing-card.popular {
-  background: linear-gradient(145deg, #16161f 0%, #111118 100%);
-  border: 1px solid var(--primary);
-  box-shadow: 0 0 30px rgba(0, 212, 255, 0.1);
-  transform: scale(1.05);
-  z-index: 2;
-}
-
-.popular-badge {
-  position: absolute;
-  top: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--primary);
-  color: var(--bg-dark);
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-.pricing-header {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.pricing-header h3 {
-  font-size: 1.25rem;
-  color: var(--text-muted);
-  margin-bottom: 0.5rem;
-}
-
-.price {
-  font-size: 1.75rem;
-  font-weight: 700;
+.pricing-v5 {
+  background: #050505;
+  padding: 100px 0;
   color: #fff;
 }
 
-.pricing-features {
-  margin-bottom: 2.5rem;
+.pricing-header-v5 {
+  text-align: center;
+  margin-bottom: 60px;
 }
 
-.pricing-features li {
+.section-label {
+  color: #00d4ff;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.section-title-v5 {
+  font-size: clamp(2.5rem, 7vw, 4rem);
+  font-weight: 900;
+  margin: 0;
+}
+
+/* --- The Grid --- */
+.pricing-grid-v5 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+/* --- The Card --- */
+.pricing-card-v5 {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.pricing-card-v5.is-popular {
+  border-color: rgba(0, 212, 255, 0.4);
+  background: rgba(0, 212, 255, 0.01);
+}
+
+/* --- Price Fix for Range Formats --- */
+.price-display {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin-bottom: 30px;
+}
+
+.price-prefix {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #00d4ff;
+  margin-top: 6px;
+}
+
+.price-body {
+  /* Using a slightly smaller max-clamp to accommodate long ranges */
+  font-size: clamp(1.5rem, 4vw, 2.2rem); 
+  font-weight: 850;
+  letter-spacing: -0.04em; /* Tighten characters to fit more */
+  line-height: 1;
+  margin: 0;
+  white-space: nowrap; /* Forces "750k - 1.5jt" to stay on one line */
+  color: #fff;
+}
+
+/* --- Content Styling --- */
+.plan-badge {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 1rem;
-  color: var(--text-main);
-  font-size: 0.95rem;
+  gap: 8px;
+  color: #555;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
 }
 
-.check-icon {
-  color: var(--primary);
+.card-body {
+  flex: 1;
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 32px;
+}
+
+.feature-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  color: #888;
+  margin-bottom: 14px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.check-box {
+  width: 18px;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #00d4ff;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+  margin-top: 2px;
 }
 
-@media (max-width: 900px) {
-  .pricing-card.popular {
-    transform: scale(1);
-    margin: 1rem 0;
+/* --- Interactive Elements --- */
+.popular-tag {
+  background: #00d4ff;
+  color: #000;
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 0.6rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  position: absolute;
+  top: -10px;
+  left: 30px;
+}
+
+.pricing-action-btn {
+  width: 100%;
+  padding: 14px !important;
+  border-radius: 12px !important;
+  font-weight: 800 !important;
+  font-size: 0.9rem !important;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Mobile Tweak */
+@media (max-width: 400px) {
+  .price-body {
+    font-size: 1.4rem; /* Ensure it stays safe on very small screens */
   }
 }

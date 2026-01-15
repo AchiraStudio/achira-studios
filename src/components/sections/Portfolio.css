@@ -1,219 +1,196 @@
-/* src/components/sections/Portfolio/Portfolio.css */
-
-/* Layout & Spacing */
-.portfolio-list {
-  display: flex;
-  flex-direction: column;
-  gap: 5rem;
-  margin-top: 4rem;
-}
-
-.section-header {
-  text-align: center;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-/* --- The Seamless Card --- */
-.portfolio-card {
-  display: flex;
-  background: var(--bg-card, #ffffff);
-  border-radius: 24px;
+.portfolio-v2 {
+  background: #080808;
+  padding: 120px 0;
+  position: relative;
   overflow: hidden;
-  height: 550px; /* Desktop Height */
-  box-shadow: 
-    0 2px 4px rgba(0,0,0,0.02),
-    0 10px 30px rgba(0,0,0,0.05),
-    0 30px 60px rgba(0,0,0,0.04);
-  border: 1px solid rgba(0,0,0,0.04);
-  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-              box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  color: #fff;
 }
 
-.portfolio-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 
-    0 4px 8px rgba(0,0,0,0.03),
-    0 20px 40px rgba(0,0,0,0.08),
-    0 40px 80px rgba(0,0,0,0.06);
-}
-
-/* --- The Media Area (Iframe Container) --- */
-.card-media {
-  flex: 1.8; /* Takes up ~65% of width on Desktop */
-  position: relative;
-  background: #f4f5f7;
-  border-right: 1px solid rgba(0,0,0,0.03);
-  overflow: hidden; /* Clips the iframe */
-}
-
-/* The Magic Scaling Iframe */
-.seamless-iframe {
-  border: none;
-  display: block;
-  position: absolute;
-  top: 0;
-  
-  /* Centering Logic: Ensures top-center alignment when scaling */
-  left: 50%;
-  transform-origin: top center; 
-  translate: -50% 0;
-  
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  pointer-events: all; 
-}
-
-.seamless-iframe.visible {
-  opacity: 1;
-}
-
-/* Overlay: Essential for Mobile scrolling */
-.click-overlay {
+/* --- Background Continuity --- */
+.bg-grid-fade {
   position: absolute;
   inset: 0;
-  z-index: 10;
-  cursor: pointer;
-  background: transparent;
+  background-image: 
+    linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 50px 50px;
+  mask-image: radial-gradient(circle at top, black, transparent 80%);
 }
 
-/* Loading State */
-.loader-overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: var(--bg-card, #ffffff);
-  z-index: 20;
+.portfolio-header {
+  margin-bottom: 80px;
 }
 
-.spinner {
-  width: 40px;
-  height: 40px;
-  border: 3px solid rgba(0,0,0,0.05);
-  border-left-color: var(--primary, #333);
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin { to { transform: rotate(360deg); } }
-
-/* --- The Details Area --- */
-.card-details {
-  flex: 1; /* Takes up ~35% of width on Desktop */
-  padding: 3.5rem;
-  display: flex;
-  align-items: center;
-  position: relative;
-  z-index: 2;
-  background: var(--bg-card, #ffffff);
-}
-
-.details-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1.5rem;
-  width: 100%;
-}
-
-.detail-category {
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: var(--primary, #007bff);
-  opacity: 0.9;
-}
-
-.detail-title {
-  font-size: 2.25rem;
-  line-height: 1.1;
-  font-weight: 800;
-  color: var(--text-main, #111);
+.portfolio-h2 {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 900;
   margin: 0;
   letter-spacing: -0.02em;
 }
 
-/* Link Button Design */
-.action-link {
-  display: inline-flex;
+.portfolio-p {
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 0.8rem;
+  margin-top: 10px;
+}
+
+/* --- The Card Overhaul --- */
+.portfolio-card-v2 {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 32px;
+  overflow: hidden;
+  height: 500px;
+  margin-bottom: 60px;
+  position: relative;
+  backdrop-filter: blur(10px);
+}
+
+.card-glass-glow {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Media Area */
+.card-media-v2 {
+  position: relative;
+  overflow: hidden;
+  background: #000;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.portfolio-iframe {
+  border: none;
+  position: absolute;
+  top: 0; left: 50%;
+  transform-origin: top center;
+  translate: -50% 0;
+  transition: opacity 0.8s ease;
+}
+
+.iframe-guard {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* Loader Styling */
+.card-loader {
+  position: absolute;
+  inset: 0;
+  background: #111;
+  display: flex;
   align-items: center;
-  gap: 0.5rem;
-  margin-top: 1rem;
-  padding: 0 0 4px 0;
-  font-weight: 600;
-  font-size: 1rem;
-  color: var(--text-main, #111);
+  justify-content: center;
+  z-index: 10;
+}
+
+.shimmer {
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, #111 0%, #1a1a1a 50%, #111 100%);
+  background-size: 200% 100%;
+  animation: shimmerMove 1.5s infinite;
+}
+
+@keyframes shimmerMove { to { background-position: -200% 0; } }
+
+/* Info Area */
+.card-info-v2 {
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  z-index: 6;
+}
+
+.info-cat {
+  font-size: 0.7rem;
+  color: #00d4ff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.info-title {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1;
+  margin: 0;
+}
+
+.info-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #fff;
   text-decoration: none;
-  border-bottom: 2px solid rgba(0,0,0,0.1);
-  transition: all 0.2s ease;
+  font-weight: 600;
+  width: fit-content;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  transition: all 0.3s ease;
 }
 
-.action-link svg {
-  transition: transform 0.2s ease;
+.info-btn:hover {
+  border-bottom-color: #00d4ff;
+  color: #00d4ff;
 }
 
-.action-link:hover {
-  color: var(--primary, #007bff);
-  border-bottom-color: var(--primary, #007bff);
-}
-
-.action-link:hover svg {
-  transform: translate(2px, -2px);
-}
-
-/* --- Responsive Design --- */
-
-/* Tablet (Portrait) */
+/* --- Responsiveness --- */
 @media (max-width: 1024px) {
-  .portfolio-card {
-    height: 450px;
+  .portfolio-card-v2 {
+    grid-template-columns: 1fr;
+    height: auto;
   }
-  .card-details {
-    padding: 2rem;
-  }
-  .detail-title {
-    font-size: 1.75rem;
-  }
+  .card-media-v2 { height: 400px; }
+  .info-title { font-size: 2.5rem; }
+  .card-info-v2 { padding: 40px; }
 }
 
-/* Mobile: Stacked Layout */
 @media (max-width: 768px) {
-  .portfolio-list {
-    gap: 3rem;
-  }
+  .portfolio-v2 { padding: 60px 20px; }
+  .portfolio-h2 { font-size: 3rem; }
+  .card-media-v2 { height: 300px; }
+}
 
-  .portfolio-card {
-    flex-direction: column; /* Stacks Media on top of Details */
-    height: auto; /* Let content dictate height */
-    border-radius: 16px;
-  }
+/* Tambahkan ini di file CSS Portfolio kamu */
 
-  .card-media {
-    /* 
-      We define a fixed height for the visual "window" into the site.
-      Because of the JS scaling, the site will look tiny but crisp.
-    */
-    height: 350px; 
-    width: 100%;
-    flex: none; /* Disable flex-grow */
-    border-right: none;
-    border-bottom: 1px solid rgba(0,0,0,0.03);
-  }
+.iframe-placeholder {
+  width: 100%;
+  height: 100%;
+  background: #0a0a0a; /* Warna gelap senada background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-  .card-details {
-    padding: 2.5rem 2rem;
-    width: 100%;
-    flex: none;
-  }
+/* Memastikan transisi iframe lebih smooth saat muncul */
+.portfolio-iframe.visible {
+  opacity: 1;
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
 
-  .detail-title {
-    font-size: 1.75rem;
-  }
-  
-  .details-inner {
-    gap: 1rem;
-  }
+.portfolio-iframe.hidden {
+  opacity: 0;
+}
+
+/* Pastikan guard tetap transparan namun menutupi area iframe */
+.iframe-guard {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background: transparent;
+  cursor: pointer;
 }
