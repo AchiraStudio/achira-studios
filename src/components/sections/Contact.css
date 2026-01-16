@@ -1,253 +1,44 @@
-.contact-v6 {
-  background: #050505;
-  padding: 150px 0;
-  position: relative;
-  overflow: hidden;
-  color: #fff;
+.contact-section { padding: 120px 0; background: var(--bg-deep)}
+
+.contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+
+.contact-title { font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 800; line-height: 1.1; margin: 0 0 20px 0; color: var(--text-main); }
+.text-blue { color: var(--primary); }
+.contact-desc { color: var(--text-muted); font-size: 1.1rem; max-width: 450px; margin-bottom: 40px; }
+
+.info-list { display: flex; flex-direction: column; gap: 20px; }
+.info-item { display: flex; align-items: center; gap: 15px; color: var(--text-main); font-weight: 500; }
+.icon-box {
+  width: 44px; height: 44px; border: 1px solid var(--border-glass);
+  border-radius: 12px; display: flex; align-items: center; justify-content: center;
+  color: var(--primary); background: var(--bg-surface);
 }
 
-/* --- Architectural Grid --- */
-.contact-grid-pattern {
-  position: absolute;
-  inset: 0;
-  background-image: 
-    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(circle at center, black, transparent 80%);
+.contact-form {
+  background: var(--bg-surface); padding: 40px; border-radius: 24px;
+  border: 1px solid var(--border-glass);
 }
 
-.contact-wrapper-v6 {
-  display: grid;
-  grid-template-columns: 1fr 1.1fr;
-  gap: 80px;
-  align-items: center;
-  position: relative;
-  z-index: 2;
+.form-group { margin-bottom: 24px; }
+.form-group label {
+  display: block; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;
+  color: var(--text-muted); margin-bottom: 8px;
 }
-
-/* --- Left Side: Narrative --- */
-.status-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 16px;
-  background: rgba(0, 255, 170, 0.05);
-  border: 1px solid rgba(0, 255, 170, 0.1);
-  border-radius: 100px;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: #00ffaa;
-  margin-bottom: 30px;
+input, textarea {
+  width: 100%; background: var(--bg-deep); border: 1px solid var(--border-glass);
+  color: var(--text-main); padding: 14px; border-radius: 12px; font-size: 1rem;
+  transition: border-color 0.3s;
 }
+input:focus, textarea:focus { outline: none; border-color: var(--primary); }
 
-.status-ping {
-  width: 8px;
-  height: 8px;
-  background: #00ffaa;
-  border-radius: 50%;
-  animation: pulse 2s infinite;
+.submit-btn {
+  width: 100%; background: var(--text-main); color: var(--bg-deep);
+  border: none; padding: 16px; border-radius: 12px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  cursor: pointer; transition: opacity 0.3s;
 }
+.submit-btn:hover { opacity: 0.9; }
 
-.contact-h2 {
-  font-size: clamp(3rem, 8vw, 6rem);
-  font-weight: 900;
-  line-height: 0.85;
-  letter-spacing: -0.04em;
-  margin-bottom: 30px;
-}
-
-.contact-p {
-  color: #888;
-  font-size: 1.1rem;
-  max-width: 450px;
-  line-height: 1.6;
-  margin-bottom: 50px;
-}
-
-/* Tactile Contact Cards */
-.tactile-methods {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.tactile-card {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding: 20px;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 20px;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-.tactile-card:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: #00d4ff;
-  transform: translateX(10px);
-}
-
-.tactile-icon {
-  width: 44px;
-  height: 44px;
-  background: rgba(0, 212, 255, 0.1);
-  color: #00d4ff;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.tactile-info span {
-  display: block;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  color: #444;
-  letter-spacing: 1px;
-}
-
-.tactile-info p {
-  color: #fff;
-  font-size: 0.95rem;
-  font-weight: 600;
-  margin: 0;
-}
-
-.tactile-arrow {
-  margin-left: auto;
-  color: #333;
-  transition: color 0.3s;
-}
-
-.tactile-card:hover .tactile-arrow {
-  color: #00d4ff;
-}
-
-/* --- Right Side: The Terminal --- */
-.contact-terminal {
-  background: rgba(10, 10, 10, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 24px;
-  padding: 0;
-  overflow: hidden;
-  backdrop-filter: blur(20px);
-  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
-}
-
-.terminal-header {
-  background: rgba(255, 255, 255, 0.03);
-  padding: 15px 25px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.terminal-dots {
-  display: flex;
-  gap: 6px;
-}
-
-.terminal-dots span {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.terminal-label {
-  font-family: monospace;
-  font-size: 0.7rem;
-  color: #555;
-  letter-spacing: 1px;
-}
-
-.terminal-form {
-  padding: 40px;
-}
-
-.input-field {
-  position: relative;
-  margin-bottom: 30px;
-}
-
-.input-field label {
-  display: block;
-  font-family: monospace;
-  font-size: 0.7rem;
-  color: #00d4ff;
-  margin-bottom: 10px;
-  letter-spacing: 1px;
-}
-
-.input-field input, 
-.input-field textarea {
-  width: 100%;
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 12px 0;
-  color: #fff;
-  font-size: 1rem;
-  outline: none;
-  transition: all 0.3s;
-}
-
-.input-focus-line {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0%;
-  height: 1px;
-  background: #00d4ff;
-  box-shadow: 0 0 10px #00d4ff;
-  transition: width 0.4s ease;
-}
-
-.input-field input:focus ~ .input-focus-line,
-.input-field textarea:focus ~ .input-focus-line {
-  width: 100%;
-}
-
-.terminal-submit {
-  width: 100%;
-  padding: 20px;
-  background: #fff;
-  color: #000;
-  border: none;
-  border-radius: 12px;
-  font-weight: 800;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  cursor: pointer;
-  transition: all 0.3s;
-  position: relative;
-  overflow: hidden;
-}
-
-.terminal-submit:hover {
-  background: #00d4ff;
-  transform: translateY(-2px);
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.5); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
-}
-
-@media (max-width: 1024px) {
-  .contact-wrapper-v6 { grid-template-columns: 1fr; gap: 60px; }
-  .contact-narrative { text-align: center; }
-  .contact-p { margin: 0 auto 40px; }
-  .tactile-methods { align-items: center; }
-  .tactile-card { width: 100%; max-width: 400px; }
+@media (max-width: 900px) {
+  .contact-wrapper { grid-template-columns: 1fr; gap: 50px; }
 }

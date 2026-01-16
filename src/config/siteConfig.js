@@ -1,119 +1,64 @@
-// src/config/siteConfig.js
-import { Monitor, Smartphone, PenTool, Layout, Server, Zap, CheckCircle, Infinity, MessageSquare, Mail } from 'lucide-react';
+import { Monitor, Smartphone, Layout, PenTool, Server, Box, Globe, Shield, Zap, Layers, MessageSquare, Mail } from 'lucide-react';
 
 export const siteConfig = {
   brand: {
     name: "AchiraStudios",
     initials: "AS",
-    tagline: "Modern Websites. Affordable Solutions.",
-    subTagline: "Solusi Website Modern untuk Bisnis Lokal.",
   },
+  whyChoose: [
+    { id: 1, title: "Cost Effective", desc: "Premium quality without the agency price tag.", icon: "CircleDollarSign" },
+    { id: 2, title: "Lightning Fast", desc: "98+ PageSpeed scores for better SEO ranking.", icon: "Zap" },
+    { id: 3, title: "Mobile First", desc: "Flawless experience on every screen size.", icon: "Smartphone" },
+    { id: 4, title: "Scalable", desc: "Built on tech stacks that grow with you.", icon: "TrendingUp" },
+    { id: 5, title: "Secure", desc: "Enterprise-grade security standards.", icon: "ShieldCheck" },
+    { id: 6, title: "24/7 Support", desc: "We are always here when you need us.", icon: "Headphones" },
+  ],
   navigation: [
     { name: "Home", href: "#home" },
-    { name: "Services", href: "#services" },
-    { name: "Why Us", href: "#why-us" },
-    { name: "Portfolio", href: "#portfolio" },
-    { name: "Pricing", href: "#pricing" },
-    { name: "Contact", href: "#contact" },
+    { name: "Capabilities", href: "#services" },
+    { name: "Work", href: "#portfolio" },
+    { name: "Plans", href: "#pricing" },
   ],
-  hero: {
-    headline: "Website Modern & Terjangkau untuk Bisnis Anda",
-    subheadline: "AchiraStudios membantu UMKM dan bisnis lokal tampil profesional di dunia digital dengan desain futuristik dan performa tinggi.",
-    ctaPrimary: "Lihat Paket",
-    ctaSecondary: "Hubungi Kami",
-  },
   services: [
-    {
-      id: 1,
-      title: "Company Profile",
-      description: "Tampilkan profesionalitas bisnis Anda ke seluruh dunia.",
-      icon: Monitor,
-    },
-    {
-      id: 2,
-      title: "F&B / Cafe Website",
-      description: "Desain menggugah selera dengan integrasi menu digital.",
-      icon: Smartphone,
-    },
-    {
-      id: 3,
-      title: "Landing Page",
-      description: "Halaman khusus untuk konversi penjualan produk Anda.",
-      icon: Layout,
-    },
-    {
-      id: 4,
-      title: "Website Redesign",
-      description: "Perbarui tampilan website lama menjadi lebih modern.",
-      icon: PenTool,
-    },
-    {
-      id: 5,
-      title: "Maintenance",
-      description: "Dukungan teknis dan update konten berkala.",
-      icon: Server,
-    },
-  ],
-  whyChoose: [
-    { id: 1, title: "Harga Terjangkau", desc: "Solusi hemat tanpa mengorbankan kualitas.", icon: CheckCircle },
-    { id: 2, title: "Desain Modern", desc: "Tampilan estetis dan relevan dengan tren terkini.", icon: Monitor },
-    { id: 3, title: "Mobile Friendly", desc: "Akses sempurna dari HP, Tablet, dan Desktop.", icon: Smartphone },
-    { id: 4, title: "Cepat & Efisien", desc: "Pengerjaan tepat waktu sesuai target bisnis Anda.", icon: Zap },
-    { id: 5, title: "Revisi Tanpa Batas", desc: "Kami pastikan Anda puas 100% dengan hasilnya.", icon: Infinity },
-    { id: 6, title: "After Sales Support", desc: "Bantuan teknis setelah website online.", icon: MessageSquare },
+    { id: 1, title: "UI/UX Design", desc: "Crafting intuitive digital experiences.", icon: Layout },
+    { id: 2, title: "Web Development", desc: "High-performance React & Next.js builds.", icon: Monitor },
+    { id: 3, title: "Mobile Apps", desc: "Cross-platform solutions for iOS & Android.", icon: Smartphone },
+    { id: 4, title: "Rebranding", desc: "Modernizing your visual identity.", icon: PenTool },
   ],
   portfolio: [
-    { 
-      id: 1, 
-      title: "Recis Ascension", 
-      category: "Events", 
-      url: "https://recisascension.com/ascension-cup"
-    },
-    { 
-      id: 2, 
-      title: "Recis-SHS", 
-      category: "Profile", 
-      url: "https://recisascension.com/r-shs", 
-    },
-    { 
-      id: 3, 
-      title: "Kotakan Cafe", 
-      category: "F&B", 
-      url: "https://food-shop-template.pages.dev/", 
-    },
-    { 
-      id: 4, 
-      title: "Recis Revival", 
-      category: "Events", 
-      url: "https://recisrevival.pages.dev/", 
-    },
+    { id: 1, title: "Recis Ascension", category: "Event Site", url: "https://recisascension.com/ascension-cup" },
+    { id: 2, title: "Recis SHS", category: "Education", url: "https://recisascension.com/r-shs" },
+    { id: 3, title: "Kotakan Cafe", category: "E-Commerce", url: "https://food-shop-template.pages.dev/" },
+    { id: 4, title: "Recis Revival", category: "Campaign", url: "https://recisrevival.pages.dev/" },
   ],
   pricing: [
     {
-      id: "basic",
-      name: "Basic",
-      price: "Rp 250.000",
-      features: ["Up to 5 Pages", "Responsive Mobile/Desktop", "NO Revision Limit", "Standard Design", "1 Month Support"],
-      isPopular: false,
+      id: "lite",
+      name: "Lite",
+      price: "250K",
+      desc: "Perfect for personal profiles.",
+      features: ["One Page Site", "Mobile Responsive", "1 Week Support", "Fast Delivery"],
+      featured: false
     },
     {
-      id: "standard",
-      name: "Standard",
-      price: "Rp 750.000+",
-      features: ["Unlimited Pages", "Custom Contact Form", "WhatsApp Integration", "NO Revision Limit", "SEO Basic Setup", "3 Months Support"],
-      isPopular: true,
+      id: "pro",
+      name: "Business",
+      price: "750K",
+      desc: "For growing brands.",
+      features: ["Up to 5 Pages", "SEO Optimization", "WhatsApp Integration", "1 Month Support", "Analytics Setup"],
+      featured: true
     },
     {
-      id: "premium",
-      name: "Premium",
-      price: "Rp 2.000.000+",
-      features: ["Unlimited Pages", "Fully Custom Design", "Advanced Animations", "Priority Support", "NO Revision Limit", "CMS Integration"],
-      isPopular: false,
+      id: "custom",
+      name: "Enterprise",
+      price: "2JT+",
+      desc: "Full-scale custom solutions.",
+      features: ["Unlimited Pages", "Custom CMS", "Advanced Animation", "Priority Support", "Server Setup"],
+      featured: false
     },
   ],
   contact: {
     email: "hello@achirastudios.com",
-    whatsapp: "+62 878 9702 5720",
-    address: "Bogor, Indonesia",
-  },
+    phone: "+62 831 8266 0328"
+  }
 };

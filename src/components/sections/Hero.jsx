@@ -1,99 +1,48 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { motion, useSpring, useTransform, useMotionValue } from 'framer-motion';
-import { ArrowRight, Globe } from 'lucide-react';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { ArrowDownCircle, Globe } from 'lucide-react';
 import './Hero.css';
 
 const Hero = () => {
-  const containerRef = useRef(null);
-  const [isMobile, setIsMobile] = useState(false);
-
-  // Motion values for high-performance tracking
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  // Smooth springs for "weighty" feel
-  const smoothX = useSpring(mouseX, { stiffness: 100, damping: 30 });
-  const smoothY = useSpring(mouseY, { stiffness: 100, damping: 30 });
-
-  // 3D Tilt - only applied on desktop
-  const rotateX = useTransform(smoothY, [-500, 500], [5, -5]);
-  const rotateY = useTransform(smoothX, [-500, 500], [-5, 5]);
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  const handleMouseMove = (e) => {
-    if (isMobile) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
-    mouseX.set(x);
-    mouseY.set(y);
-  };
-
   return (
-    <section className="hero-kinetic" onMouseMove={handleMouseMove} ref={containerRef}>
-      {/* Background Layer: Kinetic Lens Flare */}
-      {!isMobile && (
-        <motion.div 
-          className="kinetic-flare"
-          style={{ x: smoothX, y: smoothY, translateX: '-50%', translateY: '-50%' }}
-        />
-      )}
+    <section id="home" className="hero-section">
+      {/* Background Ambience */}
+      <div className="hero-glow glow-blue"></div>
+      <div className="hero-glow glow-cyan"></div>
 
-      <div className="hero-container">
+      <div className="container hero-container">
         <motion.div 
-          style={!isMobile ? { rotateX, rotateY, perspective: 1000 } : {}}
-          className="hero-card"
+          initial={{ opacity: 0, y: 30 }} 
+          animate={{ opacity: 1, y: 0 }} 
+          transition={{ duration: 0.8 }}
+          className="hero-content"
         >
-          {/* Badge */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="hero-status"
-          >
-            <span className="pulse-dot"></span>
-            Available for new projects
-          </motion.div>
-
-          {/* Main Typography */}
-          <h1 className="hero-h1">
-            <span className="text-reveal">DIGITAL</span>
-            <span className="text-reveal outline">ARCHITECT</span>
+          <div className="status-pill">
+            <span className="dot-pulse"></span> Open for new projects
+          </div>
+          
+          <h1 className="hero-title">
+            Digital <span className="outline-text">Evolution</span>
           </h1>
-
-          <p className="hero-desc">
-            We build high-performance interfaces that bridge the gap between 
-            <strong> imagination</strong> and <strong>reality</strong>.
+          
+          <p className="hero-subtitle">
+            We build aesthetic, high-performance interfaces that help local businesses 
+            transcend into the digital era.
           </p>
 
-          {/* Interactive CTA */}
-          <div className="hero-cta-group">
-            <motion.a 
-              href="#contact"
-              className="cta-primary"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Start a Project <ArrowRight size={18} />
-            </motion.a>
-            
-            <motion.a 
-              href="#work"
-              className="cta-secondary"
-            >
-              <Globe size={18} /> View Work
-            </motion.a>
+          <div className="hero-btns">
+            <a href="#portfolio" className="btn-primary">
+              View Work <Globe size={18} />
+            </a>
+            <a href="#services" className="btn-secondary">
+              Capabilities <ArrowDownCircle size={18} />
+            </a>
           </div>
         </motion.div>
       </div>
-
-      {/* Responsive Decorative Elements */}
-      <div className="bg-grid"></div>
+      
+      {/* Decorative Grid Floor */}
+      <div className="grid-floor"></div>
     </section>
   );
 };

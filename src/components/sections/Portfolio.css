@@ -1,196 +1,66 @@
-.portfolio-v2 {
-  background: #080808;
-  padding: 120px 0;
-  position: relative;
-  overflow: hidden;
-  color: #fff;
-}
+.portfolio-section { padding: 100px 0; background: var(--bg-deep); }
 
-/* --- Background Continuity --- */
-.bg-grid-fade {
-  position: absolute;
-  inset: 0;
-  background-image: 
-    linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
-  background-size: 50px 50px;
-  mask-image: radial-gradient(circle at top, black, transparent 80%);
-}
+.portfolio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
 
-.portfolio-header {
-  margin-bottom: 80px;
+.portfolio-card {
+  background: var(--bg-surface); border: 1px solid var(--border-glass);
+  border-radius: 20px; overflow: hidden; cursor: pointer;
+  transition: border-color 0.3s;
 }
+.portfolio-card:hover { border-color: var(--primary); }
 
-.portfolio-h2 {
-  font-size: clamp(2.5rem, 6vw, 5rem);
-  font-weight: 900;
-  margin: 0;
-  letter-spacing: -0.02em;
-}
+.card-thumb { height: 220px; position: relative; background: #000; overflow: hidden; }
 
-.portfolio-p {
-  color: #666;
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  font-size: 0.8rem;
-  margin-top: 10px;
-}
-
-/* --- The Card Overhaul --- */
-.portfolio-card-v2 {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 32px;
-  overflow: hidden;
-  height: 500px;
-  margin-bottom: 60px;
-  position: relative;
-  backdrop-filter: blur(10px);
-}
-
-.card-glass-glow {
-  position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, transparent 50%);
-  pointer-events: none;
-}
-
-/* Media Area */
-.card-media-v2 {
-  position: relative;
-  overflow: hidden;
-  background: #000;
-  border-right: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.portfolio-iframe {
-  border: none;
-  position: absolute;
-  top: 0; left: 50%;
-  transform-origin: top center;
-  translate: -50% 0;
-  transition: opacity 0.8s ease;
-}
-
-.iframe-guard {
-  position: absolute;
-  inset: 0;
-  z-index: 5;
-  background: transparent;
-  cursor: pointer;
-}
-
-/* Loader Styling */
-.card-loader {
-  position: absolute;
-  inset: 0;
-  background: #111;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-}
-
-.shimmer {
+/* Abstract thumbnail pattern */
+.abstract-pattern {
   width: 100%; height: 100%;
-  background: linear-gradient(90deg, #111 0%, #1a1a1a 50%, #111 100%);
-  background-size: 200% 100%;
-  animation: shimmerMove 1.5s infinite;
+  background: linear-gradient(45deg, var(--bg-surface) 25%, transparent 25%, transparent 75%, var(--bg-surface) 75%, var(--bg-surface)),
+  linear-gradient(45deg, var(--bg-surface) 25%, transparent 25%, transparent 75%, var(--bg-surface) 75%, var(--bg-surface));
+  background-color: #1e293b;
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+  opacity: 0.2;
 }
 
-@keyframes shimmerMove { to { background-position: -200% 0; } }
+.thumb-overlay {
+  position: absolute; inset: 0; background: rgba(56, 189, 248, 0.2);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 10px; color: #fff; opacity: 0; transition: all 0.3s; backdrop-filter: blur(4px);
+}
+.portfolio-card:hover .thumb-overlay { opacity: 1; }
 
-/* Info Area */
-.card-info-v2 {
-  padding: 60px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative;
-  z-index: 6;
+.card-meta { padding: 24px; }
+.meta-cat { font-size: 0.75rem; text-transform: uppercase; color: var(--primary); letter-spacing: 1px; }
+.card-meta h3 { margin: 5px 0 0; color: var(--text-main); font-size: 1.25rem; }
+
+/* Modal Styles */
+.modal-backdrop {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(8px); z-index: 2000;
+  display: flex; align-items: center; justify-content: center; padding: 20px;
 }
 
-.info-cat {
-  font-size: 0.7rem;
-  color: #00d4ff;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 12px;
+.modal-content {
+  width: 100%; max-width: 1200px; height: 85vh;
+  background: var(--bg-deep); border: 1px solid var(--border-glass);
+  border-radius: 16px; overflow: hidden; display: flex; flex-direction: column;
 }
 
-.info-title {
-  font-size: 3rem;
-  font-weight: 800;
-  line-height: 1;
-  margin: 0;
+.modal-header {
+  height: 60px; padding: 0 20px; display: flex; justify-content: space-between; align-items: center;
+  border-bottom: 1px solid var(--border-glass); background: var(--bg-surface);
+}
+.modal-header h3 { color: var(--text-main); margin: 0; }
+
+.modal-actions { display: flex; gap: 20px; align-items: center; }
+.modal-link { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 5px; }
+.modal-close { background: none; border: none; color: var(--text-main); cursor: pointer; }
+
+.iframe-container { flex: 1; position: relative; background: #000; }
+.live-iframe { width: 100%; height: 100%; border: none; position: relative; z-index: 2; opacity: 0; animation: fadeIn 1s forwards 1s; }
+.loader { 
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  color: var(--text-muted); z-index: 1;
 }
 
-.info-btn {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: #fff;
-  text-decoration: none;
-  font-weight: 600;
-  width: fit-content;
-  padding: 12px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-  transition: all 0.3s ease;
-}
-
-.info-btn:hover {
-  border-bottom-color: #00d4ff;
-  color: #00d4ff;
-}
-
-/* --- Responsiveness --- */
-@media (max-width: 1024px) {
-  .portfolio-card-v2 {
-    grid-template-columns: 1fr;
-    height: auto;
-  }
-  .card-media-v2 { height: 400px; }
-  .info-title { font-size: 2.5rem; }
-  .card-info-v2 { padding: 40px; }
-}
-
-@media (max-width: 768px) {
-  .portfolio-v2 { padding: 60px 20px; }
-  .portfolio-h2 { font-size: 3rem; }
-  .card-media-v2 { height: 300px; }
-}
-
-/* Tambahkan ini di file CSS Portfolio kamu */
-
-.iframe-placeholder {
-  width: 100%;
-  height: 100%;
-  background: #0a0a0a; /* Warna gelap senada background */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Memastikan transisi iframe lebih smooth saat muncul */
-.portfolio-iframe.visible {
-  opacity: 1;
-  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.portfolio-iframe.hidden {
-  opacity: 0;
-}
-
-/* Pastikan guard tetap transparan namun menutupi area iframe */
-.iframe-guard {
-  position: absolute;
-  inset: 0;
-  z-index: 5;
-  background: transparent;
-  cursor: pointer;
-}
+@keyframes fadeIn { to { opacity: 1; } }

@@ -1,100 +1,61 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Mail, MessageCircle, Send, Globe, ArrowUpRight } from 'lucide-react';
-import Button from '../common/Button';
-import { siteConfig } from '../../config/siteConfig';
+import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { siteConfig } from '../../config/siteConfig.js';
 import './Contact.css';
 
 const Contact = () => {
   return (
-    <section id="contact" className="contact-v6">
-      {/* Blueprint Grid Background */}
-      <div className="contact-grid-pattern"></div>
-      
-      <div className="container contact-wrapper-v6">
-        {/* Left Side: The Narrative */}
+    <section id="contact" className="contact-section">
+      <div className="container contact-wrapper">
         <motion.div 
+          className="contact-info"
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          className="contact-narrative"
         >
-          <div className="status-badge">
-            <span className="status-ping"></span>
-            Available for Q1 2024 Projects
-          </div>
+          <h2 className="contact-title">Let's Build <br /><span className="text-blue">Something Great</span></h2>
+          <p className="contact-desc">Ready to start your digital journey? Contact us for a free consultation.</p>
           
-          <h2 className="contact-h2">
-            READY TO <br />
-            <span className="outline-text">CREATE?</span>
-          </h2>
-          
-          <p className="contact-p">
-            Konsultasikan visi digital Anda. Kami membantu mengubah ide kompleks menjadi 
-            antarmuka yang berperforma tinggi.
-          </p>
-
-          <div className="tactile-methods">
-            <a href={`https://wa.me/${siteConfig.contact.whatsapp.replace(/\D/g,'')}`} className="tactile-card">
-              <div className="tactile-icon"><MessageCircle size={20} /></div>
-              <div className="tactile-info">
-                <span>WhatsApp</span>
-                <p>{siteConfig.contact.whatsapp}</p>
-              </div>
-              <ArrowUpRight className="tactile-arrow" size={16} />
-            </a>
-
-            <a href={`mailto:${siteConfig.contact.email}`} className="tactile-card">
-              <div className="tactile-icon"><Mail size={20} /></div>
-              <div className="tactile-info">
-                <span>Email</span>
-                <p>{siteConfig.contact.email}</p>
-              </div>
-              <ArrowUpRight className="tactile-arrow" size={16} />
-            </a>
+          <div className="info-list">
+            <div className="info-item">
+              <div className="icon-box"><Mail size={20} /></div>
+              <span>{siteConfig.contact.email}</span>
+            </div>
+            <div className="info-item">
+              <div className="icon-box"><Phone size={20} /></div>
+              <span>{siteConfig.contact.phone}</span>
+            </div>
+            <div className="info-item">
+              <div className="icon-box"><MapPin size={20} /></div>
+              <span>Bogor, Indonesia</span>
+            </div>
           </div>
         </motion.div>
 
-        {/* Right Side: The Terminal Form */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+        <motion.form 
+          className="contact-form"
+          initial={{ opacity: 0, x: 30 }}
+          whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          className="contact-terminal"
+          onSubmit={(e) => e.preventDefault()}
         >
-          <div className="terminal-header">
-            <div className="terminal-dots">
-              <span></span><span></span><span></span>
-            </div>
-            <div className="terminal-label">NEW_PROJECT_BRIEF.EXE</div>
+          <div className="form-group">
+            <label>Your Name</label>
+            <input type="text" placeholder="Achira" required />
           </div>
-
-          <form className="terminal-form" onSubmit={(e) => e.preventDefault()}>
-            <div className="input-field">
-              <label>01. FULL NAME</label>
-              <input type="text" placeholder="Enter your name..." required />
-              <div className="input-focus-line"></div>
-            </div>
-
-            <div className="input-field">
-              <label>02. EMAIL ADDRESS</label>
-              <input type="email" placeholder="email@example.com" required />
-              <div className="input-focus-line"></div>
-            </div>
-
-            <div className="input-field">
-              <label>03. PROJECT BRIEF</label>
-              <textarea placeholder="Describe your vision..." rows="4" required></textarea>
-              <div className="input-focus-line"></div>
-            </div>
-
-            <button type="submit" className="terminal-submit">
-              <span>INITIALIZE MESSAGE</span>
-              <Send size={18} />
-              <div className="btn-glitch-effect"></div>
-            </button>
-          </form>
-        </motion.div>
+          <div className="form-group">
+            <label>Email Address</label>
+            <input type="email" placeholder="achira@example.com" required />
+          </div>
+          <div className="form-group">
+            <label>Project Details</label>
+            <textarea rows="4" placeholder="Tell us about your idea..." required></textarea>
+          </div>
+          <button type="submit" className="submit-btn">
+            Send Message <Send size={16} />
+          </button>
+        </motion.form>
       </div>
     </section>
   );

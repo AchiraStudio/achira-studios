@@ -1,94 +1,54 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Check, Zap, Crown, Target, Sparkles } from 'lucide-react';
-import Button from '../common/Button';
-import { siteConfig } from '../../config/siteConfig';
+import { Check, Sparkles } from 'lucide-react';
+import { siteConfig } from '../../config/siteConfig.js';
 import './Pricing.css';
-
-const PricingCard = ({ plan, index }) => {
-  const icons = [Target, Zap, Crown];
-  const PlanIcon = icons[index] || Zap;
-
-  const formatPrice = (priceStr) => {
-    // 1. Check if it starts with Rp
-    const hasRp = priceStr.toLowerCase().includes('rp');
-    // 2. The 'body' is everything except the 'Rp'
-    const body = priceStr.replace(/rp/i, '').trim();
-    
-    return { 
-      prefix: hasRp ? 'Rp' : '', 
-      body: body 
-    };
-  };
-
-  const { prefix, body } = formatPrice(plan.price);
-
-  return (
-    <motion.div 
-      className={`pricing-card-v5 ${plan.isPopular ? 'is-popular' : ''}`}
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-    >
-      {plan.isPopular && (
-        <div className="popular-tag">
-          <Sparkles size={12} /> Terpopuler
-        </div>
-      )}
-      
-      <div className="card-top">
-        <div className="plan-badge">
-          <PlanIcon size={16} />
-          <span>{plan.name}</span>
-        </div>
-        
-        <div className="price-display">
-          {prefix && <span className="price-prefix">{prefix}</span>}
-          <h3 className="price-body">{body}</h3>
-        </div>
-      </div>
-
-      <div className="card-body">
-        <ul className="feature-list">
-          {plan.features.map((feature, idx) => (
-            <li key={idx}>
-              <div className="check-box">
-                <Check size={12} strokeWidth={3} />
-              </div>
-              <span>{feature}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="card-footer">
-        <Button 
-          variant={plan.isPopular ? 'primary' : 'outline'} 
-          href="#contact"
-          className="pricing-action-btn"
-        >
-          Pilih Paket
-        </Button>
-      </div>
-    </motion.div>
-  );
-};
 
 const Pricing = () => {
   return (
-    <section id="pricing" className="pricing-v5">
+    <section id="pricing" className="pricing-section">
       <div className="container">
-        <header className="pricing-header-v5">
-          <span className="section-label">Investasi</span>
-          <h2 className="section-title-v5">
-            STRATEGI <span className="outline-text">BIAYA</span>
-          </h2>
-        </header>
+        <div className="section-head centered">
+          <h2 className="head-title">Investment <span className="outline-text">Plans</span></h2>
+        </div>
 
-        <div className="pricing-grid-v5">
-          {siteConfig.pricing.map((plan, index) => (
-            <PricingCard key={plan.id} plan={plan} index={index} />
+        <div className="pricing-grid">
+          {siteConfig.pricing.map((plan, idx) => (
+            <motion.div 
+              key={plan.id}
+              className={`price-card ${plan.featured ? 'featured' : ''}`}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+            >
+              {plan.featured && (
+                <div className="featured-badge">
+                  <Sparkles size={12} /> Most Popular
+                </div>
+              )}
+              
+              <div className="price-header">
+                <h3>{plan.name}</h3>
+                <div className="price-amount">
+                  <span className="currency">Rp</span>
+                  {plan.price}
+                </div>
+                <p>{plan.desc}</p>
+              </div>
+
+              <ul className="price-features">
+                {plan.features.map((feat, i) => (
+                  <li key={i}>
+                    <Check size={16} className="check-icon" /> {feat}
+                  </li>
+                ))}
+              </ul>
+
+              <a href="#contact" className={`btn-price ${plan.featured ? 'primary' : 'outline'}`}>
+                Choose Plan
+              </a>
+            </motion.div>
           ))}
         </div>
       </div>

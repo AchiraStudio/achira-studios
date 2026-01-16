@@ -1,85 +1,116 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ArrowRight } from 'lucide-react';
+import { Menu, X, Sun, Moon, ArrowRight } from 'lucide-react';
 import { siteConfig } from '../../config/siteConfig';
 import './Navbar.css';
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [isDark, setIsDark] = useState(true);
 
+  // Theme Toggle Logic
   useEffect(() => {
+    // Check local storage or system preference
+    const saved = localStorage.getItem('theme');
+    if (saved) {
+      setIsDark(saved === 'dark');
+      document.documentElement.setAttribute('data-theme', saved);
+    } else {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const toggleTheme = () => {
+    const newTheme = !isDark ? 'dark' : 'light';
+    setIsDark(!isDark);
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+  };
+
   return (
-    <nav className={`nav-v7 ${scrolled ? 'nav-scrolled' : ''}`}>
-      <div className="container nav-wrapper-v7">
-        {/* Architectural Logo */}
-        <a href="#home" className="nav-logo-v7">
-          <div className="logo-box">
-            <span className="logo-glitch">{siteConfig.brand.initials}</span>
-            <div className="logo-frame"></div>
-          </div>
-          <span className="logo-name">{siteConfig.brand.name}</span>
-        </a>
-
-        {/* Desktop Menu */}
-        <ul className="nav-links-v7">
-          {siteConfig.navigation.map((item, index) => (
-            <li key={index}>
-              <a href={item.href} className="nav-link-v7">
-                <span className="link-num">0{index + 1}</span>
-                <span className="link-text">{item.name}</span>
-              </a>
-            </li>
-          ))}
-        </ul>
-
-        {/* CTA Button (Desktop Only) */}
-        <div className="nav-actions-v7">
-          <a href="#contact" className="nav-cta-v7">
-            <span>Get in touch</span>
-            <ArrowRight size={14} />
+    <>
+      <motion.nav 
+        className={`navbar ${scrolled ? 'nav-scrolled' : ''}`}
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <div className="container nav-wrapper">
+          {/* Brand */}
+          <a href="#home" className="nav-brand">
+            <span className="brand-box">{siteConfig.brand.initials}</span>
+            <span className="brand-name">{siteConfig.brand.name}</span>
           </a>
-          
-          <button className="mobile-toggle-v7" onClick={() => setIsOpen(!isOpen)}>
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-      </div>
 
-      {/* Mobile Overlay Menu */}
+          {/* Desktop Menu */}
+          <div className="nav-desktop">
+            <ul className="nav-links">
+              {siteConfig.navigation.map((item) => (
+                <li key={item.name}><a href={item.href}>{item.name}</a></li>
+              ))}
+            </ul>
+            
+            <div className="nav-actions">
+              <button onClick={toggleTheme} className="theme-toggle" aria-label="Toggle Theme">
+                {isDark ? <Sun size={18} /> : <Moon size={18} />}
+              </button>
+              <a href="#contact" className="nav-cta">
+                Let's Talk <ArrowRight size={16} />
+              </a>
+            </div>
+          </div>
+
+          {/* Mobile Toggle */}
+          <div className="nav-mobile-controls">
+            <button onClick={toggleTheme} className="theme-toggle-mobile">
+              {isDark ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
+            <button onClick={() => setIsMobileOpen(true)} className="menu-toggle">
+              <Menu size={24} />
+            </button>
+          </div>
+        </div>
+      </motion.nav>
+
+      {/* Mobile Menu Overlay */}
       <AnimatePresence>
-        {isOpen && (
+        {isMobileOpen && (
           <motion.div 
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="mobile-menu-v7"
+            className="mobile-overlay"
+            initial={{ opacity: 0, x: '100%' }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: '100%' }}
+            transition={{ type: "spring", damping: 25 }}
           >
-            <div className="mobile-menu-content">
-              {siteConfig.navigation.map((item, index) => (
+            <button onClick={() => setIsMobileOpen(false)} className="close-menu">
+              <X size={24} />
+            </button>
+            <div className="mobile-links-list">
+              {siteConfig.navigation.map((item, idx) => (
                 <motion.a 
-                  key={index}
+                  key={idx}
                   href={item.href}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  onClick={() => setIsOpen(false)}
-                  className="mobile-link-v7"
+                  onClick={() => setIsMobileOpen(false)}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: idx * 0.1 }}
                 >
-                  <span className="m-link-num">0{index + 1}</span>
                   {item.name}
                 </motion.a>
               ))}
+              <a href="#contact" className="mobile-cta-link" onClick={() => setIsMobileOpen(false)}>
+                Start Project
+              </a>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </>
   );
 };
 
