@@ -1,168 +1,115 @@
+/* src/components/common/Footer.css */
 .footer {
-  background: var(--bg-deep);
-  border-top: 1px solid var(--border-glass);
-  padding: 80px 0 40px;
-  position: relative;
-  overflow: hidden;
-  color: var(--text-main);
-}
-
-/* Subtle background grid pattern */
-.footer-grid-bg {
-  position: absolute;
-  inset: 0;
-  background-image: 
-    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-  background-size: 50px 50px;
-  mask-image: linear-gradient(to bottom, transparent, black);
-  pointer-events: none;
+  background: #000;
+  padding: 5rem 0 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .footer-top {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 60px;
-  margin-bottom: 80px;
-  position: relative;
-  z-index: 2;
+  gap: 3rem;
+  margin-bottom: 4rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.footer-brand {
-  max-width: 400px;
-}
-
-.footer-logo-text {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 900;
-  letter-spacing: -0.04em;
-  margin: 0 0 20px 0;
-  background: linear-gradient(to right, var(--text-main), var(--text-muted));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.footer-brand h2 {
+  font-weight: var(--font-black);
+  font-size: 1.5rem;
+  color: var(--text-main);
+  margin-bottom: 1rem;
 }
 
 .footer-tagline {
   color: var(--text-muted);
   line-height: 1.6;
-  font-size: 1rem;
 }
 
 .footer-links {
   display: flex;
-  gap: 80px;
-  flex-wrap: wrap;
+  gap: 4rem;
 }
 
 .link-group h4 {
-  color: var(--text-main);
-  font-size: 1rem;
-  margin-bottom: 24px;
-  font-weight: 700;
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1.5rem;
+  color: #fff;
 }
 
-.link-group ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.link-group li {
-  margin-bottom: 12px;
+.link-group ul li {
+  margin-bottom: 0.75rem;
 }
 
 .link-group a {
   color: var(--text-muted);
-  text-decoration: none;
-  transition: color 0.3s, transform 0.3s;
-  display: inline-block;
+  transition: color 0.2s;
 }
 
 .link-group a:hover {
   color: var(--primary);
-  transform: translateX(5px);
 }
 
 .social-icons {
   display: flex;
-  gap: 16px;
+  gap: 1rem;
 }
 
-.social-icons a {
-  width: 40px;
-  height: 40px;
-  background: var(--bg-surface);
-  border: 1px solid var(--border-glass);
-  border-radius: 10px;
+.social-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  background: rgba(255, 255, 255, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-muted);
+  border-radius: 50%;
+  color: #fff;
   transition: all 0.3s;
 }
 
-.social-icons a:hover {
+.social-icon:hover {
   background: var(--primary);
-  color: var(--bg-deep);
-  border-color: var(--primary);
   transform: translateY(-3px);
 }
 
-/* Footer Bottom */
 .footer-bottom {
-  border-top: 1px solid var(--border-glass);
-  padding-top: 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative;
-  z-index: 2;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.copyright {
   color: var(--text-muted);
-  font-size: 0.9rem;
-  margin: 0;
+  font-size: var(--text-sm);
 }
 
-.back-to-top {
-  background: transparent;
-  border: 1px solid var(--border-glass);
-  color: var(--text-main);
-  padding: 10px 20px;
-  border-radius: 100px;
+.back-top {
+  background: none;
+  border: none;
+  color: #fff;
+  font-weight: var(--font-bold);
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  transition: all 0.3s;
+  gap: 0.5rem;
 }
 
-.back-to-top:hover {
-  background: var(--bg-surface);
-  border-color: var(--primary);
+.back-top:hover {
   color: var(--primary);
 }
 
 @media (max-width: 768px) {
   .footer-top {
     flex-direction: column;
-    gap: 40px;
   }
-  
+
   .footer-links {
-    gap: 40px;
-    width: 100%;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 2rem;
   }
-  
+
   .footer-bottom {
-    flex-direction: column-reverse;
-    text-align: center;
+    flex-direction: column;
+    gap: 1rem;
   }
 }

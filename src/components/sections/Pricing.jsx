@@ -8,13 +8,15 @@ const Pricing = () => {
   return (
     <section id="pricing" className="pricing-section">
       <div className="container">
-        <div className="section-head centered">
-          <h2 className="head-title">Investment <span className="outline-text">Plans</span></h2>
+        <div style={{ textAlign: 'center' }}>
+          <h2 className="section-title" style={{ fontSize: 'var(--text-4xl)', fontWeight: '900', marginBottom: '1rem' }}>
+            Investment <span className="outline-text">Plans</span>
+          </h2>
         </div>
 
         <div className="pricing-grid">
           {siteConfig.pricing.map((plan, idx) => (
-            <motion.div 
+            <motion.div
               key={plan.id}
               className={`price-card ${plan.featured ? 'featured' : ''}`}
               initial={{ opacity: 0, y: 20 }}
@@ -27,20 +29,21 @@ const Pricing = () => {
                   <Sparkles size={12} /> Most Popular
                 </div>
               )}
-              
+
               <div className="price-header">
-                <h3>{plan.name}</h3>
-                <div className="price-amount">
-                  <span className="currency">Rp</span>
+                <h3 className="price-name">{plan.name}</h3>
+                <div className="price-value">
+                  <span className="price-currency">Rp</span>
                   {plan.price}
                 </div>
-                <p>{plan.desc}</p>
+                <p className="price-desc">{plan.desc}</p>
               </div>
 
-              <ul className="price-features">
+              <ul className="feature-list">
                 {plan.features.map((feat, i) => (
-                  <li key={i}>
-                    <Check size={16} className="check-icon" /> {feat}
+                  <li key={i} className="feature-item">
+                    <div className="check-circle"><Check size={12} /></div>
+                    {feat}
                   </li>
                 ))}
               </ul>

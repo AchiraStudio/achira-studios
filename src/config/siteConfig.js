@@ -26,12 +26,12 @@ export const siteConfig = {
     { id: 4, title: "Rebranding", desc: "Modernizing your visual identity.", icon: PenTool },
   ],
   portfolio: [
-    { id: 1, title: "Recis Ascension", category: "Event Site", url: "https://recisascension.com/ascension-cup" },
+    { id: 1, title: "Recis Ascension", category: "Event", url: "https://recisascension.com/ascension-cup" },
     { id: 2, title: "Recis SHS", category: "Education", url: "https://recisascension.com/r-shs" },
-    { id: 3, title: "Kotakan Cafe", category: "E-Commerce", url: "https://food-shop-template.pages.dev/" },
-    { id: 4, title: "Recis Revival", category: "Campaign", url: "https://recisrevival.pages.dev/" },
-    { id: 5, title: "Warkombi", category: "Event Site", url: "https://recisascension.com/ascension-cup" },
-    { id: 6, title: "Kavee", category: "Education", url: "https://recisascension.com/r-shs" }
+    { id: 3, title: "Kotakan Cafe", category: "F&B", url: "https://food-shop-template.pages.dev/" },
+    { id: 4, title: "Recis Revival", category: "Event", url: "https://recisrevival.pages.dev/" },
+    { id: 5, title: "Warkombi", category: "F&B", url: "https://warkombi.pages.dev/" },
+    { id: 6, title: "Kavee", category: "F&B", url: "https://kavee-31f.pages.dev/" }
   ],
   pricing: [
     {
@@ -48,7 +48,7 @@ export const siteConfig = {
       price: "750K",
       desc: "For growing brands.",
       features: ["Up to 10 Pages", "SEO Optimization", "WhatsApp Integration", "Unlimited Support", "Analytics Setup"],
-      featured: true
+      featured: false
     },
     {
       id: "custom",
@@ -60,7 +60,7 @@ export const siteConfig = {
     },
   ],
   contact: {
-    email: "hello@achirastudios.com",
+    email: "studiosachira@gmail.com",
     phone: "+62 831 8266 0328"
   }
 };

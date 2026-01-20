@@ -8,13 +8,18 @@ const Services = () => {
     <section id="services" className="services-section">
       <div className="container">
         <div className="section-head">
-          <h2 className="head-title">Our <span className="outline-text">Craft</span></h2>
-          <div className="head-line"></div>
+          <div>
+            <h2 className="head-title">Our <span className="text-gradient">Craft</span></h2>
+            <div className="head-line"></div>
+          </div>
+          <p style={{ color: 'var(--text-muted)', maxWidth: '300px', textAlign: 'right' }}>
+            Comprehensive digital solutions tailored for scalablity and impact.
+          </p>
         </div>
 
         <div className="services-grid">
           {siteConfig.services.map((service, index) => (
-            <motion.div 
+            <motion.div
               key={service.id}
               className="service-card"
               initial={{ opacity: 0, y: 30 }}
@@ -23,11 +28,11 @@ const Services = () => {
               transition={{ delay: index * 0.1 }}
             >
               <div className="service-icon">
-                <service.icon size={28} strokeWidth={1.5} />
+                <service.icon size={64} strokeWidth={1} />
               </div>
+
               <h3>{service.title}</h3>
               <p>{service.desc}</p>
-              <div className="card-bg-hover"></div>
             </motion.div>
           ))}
         </div>

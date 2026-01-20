@@ -10,15 +10,11 @@ const Footer = () => {
 
   return (
     <footer className="footer">
-      <div className="footer-grid-bg"></div>
-      
       <div className="container">
         <div className="footer-top">
           {/* Brand Area */}
           <div className="footer-brand">
-            <h2 className="footer-logo-text">
-              {siteConfig.brand.name}
-            </h2>
+            <h2>{siteConfig.brand.name}</h2>
             <p className="footer-tagline">
               Refining the web, one pixel at a time. <br />
               Bogor, Indonesia.
@@ -39,21 +35,21 @@ const Footer = () => {
             <div className="link-group">
               <h4>Socials</h4>
               <div className="social-icons">
-                <a href="#" aria-label="Instagram"><Instagram size={20} /></a>
-                <a href="#" aria-label="Twitter"><Twitter size={20} /></a>
-                <a href="#" aria-label="LinkedIn"><Linkedin size={20} /></a>
-                <a href="#" aria-label="GitHub"><Github size={20} /></a>
+                <a href="#" className="social-icon" aria-label="Instagram"><Instagram size={20} /></a>
+                <a href="#" className="social-icon" aria-label="Twitter"><Twitter size={20} /></a>
+                <a href="#" className="social-icon" aria-label="LinkedIn"><Linkedin size={20} /></a>
+                <a href="#" className="social-icon" aria-label="GitHub"><Github size={20} /></a>
               </div>
             </div>
           </div>
         </div>
 
         <div className="footer-bottom">
-          <p className="copyright">
+          <p>
             &copy; {new Date().getFullYear()} {siteConfig.brand.name}. All rights reserved.
           </p>
-          
-          <button onClick={scrollToTop} className="back-to-top">
+
+          <button onClick={scrollToTop} className="back-top">
             Back to Top <ArrowUp size={16} />
           </button>
         </div>

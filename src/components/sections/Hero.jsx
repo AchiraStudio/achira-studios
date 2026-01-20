@@ -6,43 +6,51 @@ import './Hero.css';
 const Hero = () => {
   return (
     <section id="home" className="hero-section">
-      {/* Background Ambience */}
-      <div className="hero-glow glow-blue"></div>
-      <div className="hero-glow glow-cyan"></div>
+      {/* Background Elements */}
+      <div className="hero-glow"></div>
+      <div className="hero-grid"></div>
 
       <div className="container hero-container">
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }} 
-          animate={{ opacity: 1, y: 0 }} 
-          transition={{ duration: 0.8 }}
+        <motion.div
           className="hero-content"
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <div className="status-pill">
-            <span className="dot-pulse"></span> Open for new projects
+          <div className="label-pill">
+            <span className="dot"></span> Open for Commissions
           </div>
-          
+
           <h1 className="hero-title">
-            Digital <span className="outline-text">Evolution</span>
+            DIGITAL <br />
+            <span className="outline">EVOLUTION</span>
           </h1>
-          
-          <p className="hero-subtitle">
-            We build aesthetic, high-performance interfaces that help local businesses 
-            transcend into the digital era.
+
+          <p className="hero-desc">
+            We engineer high-performance digital experiences that help forward-thinking brands
+            transcend the ordinary. Fast, aesthetic, and lethal.
           </p>
 
-          <div className="hero-btns">
+          <div className="hero-actions">
             <a href="#portfolio" className="btn-primary">
-              View Work <Globe size={18} />
+              View Work <Globe size={20} />
             </a>
             <a href="#services" className="btn-secondary">
-              Capabilities <ArrowDownCircle size={18} />
+              Capabilities <ArrowDownCircle size={20} />
             </a>
           </div>
         </motion.div>
+
+        {/* Abstract Visual */}
+        <motion.div
+          className="hero-visual"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, delay: 0.2 }}
+        >
+          <div className="visual-box"></div>
+        </motion.div>
       </div>
-      
-      {/* Decorative Grid Floor */}
-      <div className="grid-floor"></div>
     </section>
   );
 };
