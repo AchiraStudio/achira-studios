@@ -1,9 +1,31 @@
+// src/components/sections/Hero.jsx
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowDownCircle, Globe } from 'lucide-react';
 import './Hero.css';
 
 const Hero = () => {
+  // Stagger children
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { type: "spring", stiffness: 50 } 
+    }
+  };
+
   return (
     <section id="home" className="hero-section">
       {/* Background Elements */}
@@ -13,42 +35,52 @@ const Hero = () => {
       <div className="container hero-container">
         <motion.div
           className="hero-content"
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          initial="hidden"
+          animate="visible"
+          variants={containerVariants}
         >
-          <div className="label-pill">
+          <motion.div
+            className="label-pill"
+            variants={itemVariants}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
             <span className="dot"></span> Open for Commissions
-          </div>
+          </motion.div>
 
-          <h1 className="hero-title">
+          <motion.h1 className="hero-title" variants={itemVariants}>
             DIGITAL <br />
-            <span className="outline">EVOLUTION</span>
-          </h1>
+            <motion.span
+              className="outline"
+              whileHover={{ x: 10, color: "rgba(56, 189, 248, 0.1)" }}
+            >
+              EVOLUTION
+            </motion.span>
+          </motion.h1>
 
-          <p className="hero-desc">
+          <motion.p className="hero-desc" variants={itemVariants}>
             We engineer high-performance digital experiences that help forward-thinking brands
             transcend the ordinary. Fast, aesthetic, and lethal.
-          </p>
+          </motion.p>
 
-          <div className="hero-actions">
-            <a href="#portfolio" className="btn-primary">
+          <motion.div className="hero-actions" variants={itemVariants}>
+            <motion.a
+              href="#portfolio"
+              className="btn btn-primary hero-btn"
+              whileHover={{ scale: 1.05, boxShadow: "0 0 25px rgba(56, 189, 248, 0.4)" }}
+              whileTap={{ scale: 0.95 }}
+            >
               View Work <Globe size={20} />
-            </a>
-            <a href="#services" className="btn-secondary">
+            </motion.a>
+            <motion.a
+              href="#services"
+              className="btn btn-secondary hero-btn"
+              whileHover={{ scale: 1.05, backgroundColor: "rgba(56, 189, 248, 0.1)", borderColor: "var(--primary)" }}
+              whileTap={{ scale: 0.95 }}
+            >
               Capabilities <ArrowDownCircle size={20} />
-            </a>
-          </div>
-        </motion.div>
-
-        {/* Abstract Visual */}
-        <motion.div
-          className="hero-visual"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.2 }}
-        >
-          <div className="visual-box"></div>
+            </motion.a>
+          </motion.div>
         </motion.div>
       </div>
     </section>

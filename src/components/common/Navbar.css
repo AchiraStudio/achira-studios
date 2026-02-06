@@ -6,16 +6,16 @@
   width: 100%;
   z-index: 1000;
   padding: 1.5rem 0;
-  transition: all var(--duration-normal) var(--ease-smooth);
+  transition: all var(--transition-normal);
 }
 
 .navbar.scrolled {
   padding: 1rem 0;
-  background: rgba(2, 6, 23, 0.85);
-  /* Darker glass on scroll */
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border-glass);
+  background: rgba(15, 23, 42, 0.6); /* Slightly more transparent than before */
+  backdrop-filter: blur(var(--backdrop-blur));
+  -webkit-backdrop-filter: blur(var(--backdrop-blur));
+  border-bottom: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-sm);
 }
 
 .nav-container {
@@ -29,7 +29,7 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  font-weight: var(--font-bold);
+  font-weight: 700;
   font-size: 1.25rem;
   letter-spacing: -0.02em;
 }
@@ -43,14 +43,15 @@
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-sm);
-  font-weight: var(--font-black);
-  transition: all 0.3s ease;
+  font-weight: 900;
+  transition: all var(--transition-fast);
 }
 
 .nav-brand:hover .brand-icon {
   background-color: var(--primary);
   color: var(--text-main);
-  transform: rotate(-5deg);
+  transform: rotate(-10deg) scale(1.1);
+  box-shadow: var(--glow-text);
 }
 
 /* --- DESKTOP MENU --- */
@@ -68,13 +69,14 @@
 .nav-link {
   color: var(--text-muted);
   font-size: var(--text-sm);
-  font-weight: var(--font-medium);
-  transition: color 0.2s ease;
+  font-weight: 500;
+  transition: color var(--transition-fast);
   position: relative;
 }
 
 .nav-link:hover {
   color: var(--text-main);
+  text-shadow: 0 0 15px rgba(255,255,255,0.5);
 }
 
 .nav-link::after {
@@ -85,7 +87,8 @@
   width: 0;
   height: 2px;
   background-color: var(--primary);
-  transition: width 0.3s var(--ease-spring);
+  box-shadow: 0 0 10px var(--primary);
+  transition: width var(--transition-normal);
 }
 
 .nav-link:hover::after {
@@ -93,22 +96,26 @@
 }
 
 .nav-cta {
-  padding: 0.6rem 1.2rem;
+  padding: 0.6rem 1.4rem;
   font-size: 0.875rem;
-  background: var(--text-main);
-  color: var(--bg-deep);
-  border-radius: var(--radius-md);
-  font-weight: var(--font-bold);
+  background: rgba(255,255,255,0.1);
+  border: 1px solid var(--glass-border);
+  color: var(--text-main);
+  border-radius: var(--radius-full);
+  font-weight: 600;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  transition: all 0.3s ease;
+  transition: all var(--transition-fast);
+  backdrop-filter: blur(4px);
 }
 
 .nav-cta:hover {
   background: var(--primary);
-  color: var(--text-main);
+  border-color: var(--primary);
+  color: var(--bg-deep);
   transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
 }
 
 /* --- MOBILE TOGGLE --- */
@@ -127,13 +134,18 @@
   right: 0;
   width: 100%;
   height: 100vh;
-  background: var(--bg-deep);
+  background: var(--bg-deep); /* Could be glass too, but solid is safer for readability */
   z-index: 1001;
   display: flex;
-  flex-col: column;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 2rem;
+}
+
+/* Enhance mobile menu background with a gradient or glass if desired */
+.mobile-menu {
+    background: radial-gradient(circle at top right, #1e293b, #020617);
 }
 
 .mobile-close {
@@ -144,6 +156,12 @@
   border: none;
   color: var(--text-main);
   cursor: pointer;
+  transition: transform var(--transition-fast);
+}
+
+.mobile-close:hover {
+    transform: rotate(90deg);
+    color: var(--primary);
 }
 
 .mobile-nav-links {
@@ -155,12 +173,14 @@
 
 .mobile-nav-link {
   font-size: 2rem;
-  font-weight: var(--font-bold);
-  color: var(--text-main);
+  font-weight: 700;
+  color: var(--text-muted);
+  transition: all var(--transition-fast);
 }
 
 .mobile-nav-link:hover {
   color: var(--primary);
+  letter-spacing: 2px;
 }
 
 /* --- RESPONSIVE --- */

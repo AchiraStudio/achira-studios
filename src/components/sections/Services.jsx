@@ -12,7 +12,7 @@ const Services = () => {
             <h2 className="head-title">Our <span className="text-gradient">Craft</span></h2>
             <div className="head-line"></div>
           </div>
-          <p style={{ color: 'var(--text-muted)', maxWidth: '300px', textAlign: 'right' }}>
+          <p className="head-desc">
             Comprehensive digital solutions tailored for scalablity and impact.
           </p>
         </div>

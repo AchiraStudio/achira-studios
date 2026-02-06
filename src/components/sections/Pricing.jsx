@@ -9,7 +9,7 @@ const Pricing = () => {
     <section id="pricing" className="pricing-section">
       <div className="container">
         <div style={{ textAlign: 'center' }}>
-          <h2 className="section-title" style={{ fontSize: 'var(--text-4xl)', fontWeight: '900', marginBottom: '1rem' }}>
+          <h2 className="section-title" style={{ fontSize: 'var(--text-4xl)', fontWeight: '900', marginBottom: '1rem', color: 'var(--text-main)' }}>
             Investment <span className="outline-text">Plans</span>
           </h2>
         </div>

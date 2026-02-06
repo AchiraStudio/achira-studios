@@ -21,7 +21,7 @@ export const siteConfig = {
   ],
   services: [
     { id: 1, title: "UI/UX Design", desc: "Crafting intuitive digital experiences.", icon: Layout },
-    { id: 2, title: "Web Development", desc: "High-performance React & Next.js builds.", icon: Monitor },
+    { id: 2, title: "Web Development", desc: "High-performance React+Vite & Plain HTML builds.", icon: Monitor },
     { id: 3, title: "Mobile Apps", desc: "Cross-platform solutions for iOS & Android.", icon: Smartphone },
     { id: 4, title: "Rebranding", desc: "Modernizing your visual identity.", icon: PenTool },
   ],
