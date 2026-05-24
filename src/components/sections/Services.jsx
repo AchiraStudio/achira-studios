@@ -1,38 +1,34 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { siteConfig } from '../../config/siteConfig.js';
+import { siteConfig } from '../../config/siteConfig';
 import './Services.css';
 
 const Services = () => {
   return (
     <section id="services" className="services-section">
       <div className="container">
-        <div className="section-head">
-          <div>
-            <h2 className="head-title">Our <span className="text-gradient">Craft</span></h2>
-            <div className="head-line"></div>
-          </div>
-          <p className="head-desc">
-            Comprehensive digital solutions tailored for scalablity and impact.
-          </p>
+        <div className="section-header">
+          <h2 className="heading-premium">Capabilities.</h2>
+          <p style={{ color: 'var(--text-muted)' }}>What we do best.</p>
         </div>
 
-        <div className="services-grid">
+        <div className="bento-grid">
           {siteConfig.services.map((service, index) => (
             <motion.div
               key={service.id}
-              className="service-card"
-              initial={{ opacity: 0, y: 30 }}
+              className="bento-card"
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ delay: index * 0.1, duration: 0.5 }}
             >
-              <div className="service-icon">
-                <service.icon size={64} strokeWidth={1} />
+              <div className="bento-icon">
+                <service.icon size={32} strokeWidth={1.5} />
               </div>
-
-              <h3>{service.title}</h3>
-              <p>{service.desc}</p>
+              <div>
+                <h3>{service.title}</h3>
+                <p>{service.desc}</p>
+              </div>
             </motion.div>
           ))}
         </div>

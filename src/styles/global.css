@@ -1,12 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&display=swap');
-
 /* src/styles/global.css */
 @import './variables.css';
 
-/* --- RESET --- */
-*,
-*::before,
-*::after {
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -14,14 +9,14 @@
 
 html {
   scroll-behavior: smooth;
-  font-size: 16px;
   background-color: var(--bg-deep);
   color: var(--text-main);
   font-family: var(--font-main);
+  letter-spacing: -0.015em; /* Tighter tracking for premium feel */
 }
 
 body {
-  line-height: 1.6;
+  line-height: 1.5;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -33,114 +28,58 @@ a {
   transition: color var(--transition-fast);
 }
 
-img, video, svg {
-  display: block;
-  max-width: 100%;
-}
-
-ul {
-  list-style: none;
-}
-
-/* --- UTILITIES --- */
 .container {
-  max-width: 1280px; /* var(--container-width) sometimes fails if definition missing, safe fallback */
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 1.5rem;
   width: 100%;
 }
 
-.section-padding {
-  padding: var(--spacing-xxl, 6rem) 0;
-}
-
-/* Glass Panels */
-.glass-panel {
-  background: var(--glass-bg);
-  backdrop-filter: blur(var(--backdrop-blur));
-  -webkit-backdrop-filter: blur(var(--backdrop-blur));
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--shadow-sm);
+/* Premium Typography Utility */
+.heading-premium {
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: var(--text-highlight);
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, var(--text-main) 30%, var(--primary) 100%);
+  background: linear-gradient(180deg, #fff 0%, #86868b 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  display: inline-block; /* Fix for some browsers */
 }
 
-/* Animation Utilities */
-.fade-in-up {
-  animation: fadeInUp 0.8s var(--ease-out-expo) forwards;
-  opacity: 0;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--bg-deep);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--glass-border);
-  border-radius: var(--radius-full);
-}
-
-
-/* --- BUTTONS --- */
+/* Buttons */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
+  padding: 0.8rem 1.8rem;
   border-radius: var(--radius-full);
-  font-weight: 600;
+  font-weight: 500;
   font-size: var(--text-sm);
   cursor: pointer;
-  transition: all var(--transition-normal);
-  border: 1px solid transparent;
-  outline: none;
+  transition: all var(--transition-fast);
+  border: none;
 }
 
 .btn-primary {
-  background: var(--primary);
-  color: var(--bg-deep); /* Dark text on bright button */
-  box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+  background: var(--text-highlight);
+  color: var(--bg-deep);
 }
 
 .btn-primary:hover {
-  filter: brightness(1.1);
-  box-shadow: 0 0 30px rgba(56, 189, 248, 0.5);
-  transform: translateY(-2px);
+  background: #e0e0e0;
+  transform: scale(0.98);
 }
 
 .btn-secondary {
-  background: rgba(255, 255, 255, 0.05); /* Transparent glass */
+  background: rgba(255, 255, 255, 0.05);
   color: var(--text-main);
-  border-color: var(--glass-border);
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(10px);
 }
 
 .btn-secondary:hover {
   background: rgba(255, 255, 255, 0.1);
-  border-color: var(--primary);
-  color: var(--primary);
-  transform: translateY(-2px);
 }

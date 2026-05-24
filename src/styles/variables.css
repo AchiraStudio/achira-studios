@@ -1,44 +1,33 @@
 /* src/styles/variables.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
 :root {
-  /* --- PALETTE: Deep Ocean Nebula --- */
+  /* --- PALETTE: Studio Premium --- */
+  --bg-deep: #000000; 
+  --bg-surface: #111111; 
+  --bg-card: #1d1d1f; /* Apple dark mode card color */
+  
+  --primary: #2997ff; /* Apple Blue */
+  --primary-hover: #147ce5;
+  
+  --text-main: #f5f5f7; 
+  --text-muted: #86868b;
+  --text-highlight: #ffffff;
 
-  /* Backgrounds */
-  --bg-deep: #020617; /* Darkest Slate - Foundation */
-  --bg-surface: #0f172a; /* Dark Slate - Main Surface */
-  --bg-card: rgba(30, 41, 59, 0.4); /* Glass Card Base */
+  --border-light: rgba(255, 255, 255, 0.08);
+  --border-focus: rgba(255, 255, 255, 0.15);
 
-  /* Accents */
-  --primary: #38bdf8; /* Sky 400 - Main Brand Color */
-  --primary-glow: rgba(56, 189, 248, 0.4);
-  --secondary: #8b5cf6; /* Violet 500 - Secondary Magic */
-  --secondary-glow: rgba(139, 92, 246, 0.4);
-
-  /* Text */
-  --text-main: #f8fafc; /* White/Slate 50 */
-  --text-muted: #94a3b8; /* Slate 400 */
-  --text-highlight: #e2e8f0; /* Slate 200 */
-
-  /* Glassmorphism */
-  --glass-border: rgba(255, 255, 255, 0.08);
-  --glass-bg: rgba(15, 23, 42, 0.6);
-  --glass-card-hover: rgba(15, 23, 42, 0.8);
-  --backdrop-blur: 16px;
-
-  /* Shadows & Glows */
-  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
-  --glow-text: 0 0 20px rgba(56, 189, 248, 0.3);
-
-  /* Typography */
-  --font-main: "Outfit", "Inter", system-ui, sans-serif;
-
-  /* Fluid Space/Type */
+  /* Typography - System Font Stack for San Francisco / Inter fallback */
+  --font-main: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  
+  /* Fluid Spacing */
   --spacing-xs: 0.5rem;
   --spacing-sm: 1rem;
   --spacing-md: 2rem;
   --spacing-lg: 4rem;
   --spacing-xl: 8rem;
 
+  /* Typography Scales */
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
   --text-base: 1rem;
@@ -46,28 +35,17 @@
   --text-xl: 1.25rem;
   --text-2xl: 1.5rem;
   --text-3xl: 2rem;
-  --text-4xl: clamp(2.5rem, 5vw, 3.5rem);
-  --text-display: clamp(3.5rem, 8vw, 6rem);
+  --text-4xl: clamp(2.5rem, 5vw, 4rem);
+  --text-display: clamp(3rem, 8vw, 6.5rem);
 
-  /* Animation */
-  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
-  --transition-fast: 200ms ease;
-  --transition-normal: 400ms var(--ease-out-expo);
-  --transition-slow: 800ms var(--ease-out-expo);
+  /* Transitions */
+  --ease-apple: cubic-bezier(0.25, 1, 0.5, 1);
+  --transition-fast: 150ms var(--ease-apple);
+  --transition-normal: 300ms var(--ease-apple);
+  --transition-slow: 600ms var(--ease-apple);
 
   --radius-sm: 8px;
   --radius-md: 16px;
   --radius-lg: 24px;
   --radius-full: 9999px;
-}
-
-[data-theme="light"] {
-  /* Define this only if you really need a light mode, otherwise keep it tailored to dark */
-  --bg-deep: #f8fafc;
-  --bg-surface: #ffffff;
-  --bg-card: rgba(255, 255, 255, 0.6);
-  --text-main: #0f172a;
-  --text-muted: #64748b;
-  --glass-border: rgba(0, 0, 0, 0.05);
-  --glass-bg: rgba(255, 255, 255, 0.7);
 }
